@@ -235,6 +235,26 @@ export default function Home() {
 
             <Card className="h-full">
               <CardHeader>
+                <CardTitle>Admin Dashboard</CardTitle>
+                <CardDescription>Web Application</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc pl-5 space-y-2 text-gray-700">
+                  <li>
+                    Developed a web app UI that allows an admin to view all active and inactive users on their system.
+                  </li>
+                </ul>
+                <div className="mt-4 flex gap-2">
+                  <Badge className="bg-[#073737]">HTML</Badge>
+                  <Badge className="bg-[#073737]">CSS</Badge>
+                  <Badge className="bg-[#073737]">JS</Badge>
+                  <a href="https://abel-ronoh.github.io/admin-dashboard/"> <Badge className="bg-transparent border-2 border-[#073737] text-black hover:bg-[#073737] hover:text-white">View</Badge></a>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="h-full">
+              <CardHeader>
                 <CardTitle>TechInnovatorsHub</CardTitle>
                 <CardDescription>Founder & Lead Organizer</CardDescription>
               </CardHeader>
