@@ -438,7 +438,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-6 bg-gray-900 text-white text-center">
+      <footer className="py-6 bg-[#073737] text-white text-center">
         <div className="container mx-auto px-4">
           <p>&copy; {new Date().getFullYear()} Abel Ronoh. All rights reserved.</p>
         </div>
