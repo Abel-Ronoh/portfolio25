@@ -46,7 +46,7 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link href="#" className="font-bold text-xl">
-            <span className={isScrolled ? "text-[#073737]" : "text-white"}>ABEL RONOH</span>
+            {/* <span className={isScrolled ? "text-[#073737]" : "text-white"}>ABEL RONOH</span> */}
           </Link>
 
           {/* Desktop Navigation */}

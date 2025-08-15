@@ -22,7 +22,7 @@ export default function Home() {
         <h1>SKILL</h1>
         <h1>EXPERIENCE</h1>
         <button className="bg-transparent border-4 border-[#0A3638] w-[96px] h-[43px] text-[#0A3638]  m-1 font-[14px] hover:border-[#577955] hover:bg-[#577955] hover:text-white cursor-pointer ">
-          Linkedin
+          <a href="https://www.linkedin.com/in/abel-ronoh-ab718a265/" target="_blank">Linkedin</a>
         </button>
       </div>
       <div className='md:flex md:w-50px'>
@@ -41,7 +41,7 @@ export default function Home() {
           Let&#39;s Talk
         </button>
         <button className="bg-transparent border-4 border-[#0A3638] w-[96px] h-[43px] text-[#0A3638]  m-1 font-[14px] hover:border-[#577955] hover:bg-[#577955] hover:text-white cursor-pointer ">
-          GitHub
+          <a href="https://github.com/Abel-Ronoh" target="_blank">GitHub</a>
         </button>
       </div>
       <div className="relative h-[400px] md:w-1/2  my-10">
@@ -70,10 +70,7 @@ export default function Home() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-[#073737] text-center">PROFILE SUMMARY</h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-8">
-              Final-year Software Engineering student with expertise in full-stack development and data pipeline design.
-              Certified in Data Engineering (Zoomcamp), with hands-on experience in building scalable ETL workflows,
-              cloud-based data solutions, and user-centric applications. Proven collaborator in hackathons, freelance
-              projects, and technical mentorship.
+              I am a web developer with 1 year of experience in developing full stack projects using React, Next JS, javascript, html, css, express, firebase, Supabase and sql.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card>
@@ -144,17 +141,21 @@ export default function Home() {
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle>Frontend Developer Intern</CardTitle>
-                    <CardDescription>Masomotele Computers</CardDescription>
+                    <CardTitle>Software Engineer Attachee</CardTitle>
+                    <CardDescription>Zetech University</CardDescription>
                   </div>
-                  <Badge className="bg-[#073737]">May - June 2024</Badge>
+                  <Badge className="bg-[#073737]">May - Aug 2025</Badge>
                 </div>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                  <li>Revamped UI/UX for a blog platform using React.js, improving user engagement by 25%.</li>
+                  <li>developed an AI chat bot that
+helps users to make career choices and easily assess career
+options in the university</li>
                   <li>
-                    Collaborated with backend teams to integrate RESTful APIs and optimize data fetching strategies.
+                    Utilized a localy running LLM for the user responses, that would
+reduce API cost by 50%.
+
                   </li>
                 </ul>
               </CardContent>
