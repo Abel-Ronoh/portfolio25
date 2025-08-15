@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Navbar } from "@/components/ui/navbar"
 import Image from 'next/image';
 import img from '../public/img.png'
+import ProjectsSectiion from '../components/ProjectsSection'
 
 export default function Home() {
   return (
@@ -207,72 +208,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-16 md:py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-[#073737] text-center">PROJECTS</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="h-full">
-              <CardHeader>
-                <CardTitle>Smart Study AI</CardTitle>
-                <CardDescription>Chrome Extension</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                  <li>
-                    Developed a chrome extension that utilizes AI libraries to generate study summaries and quizzes from
-                    PDFs.
-                  </li>
-                  <li>Integrated Supabase for user authentication and activity tracking.</li>
-                </ul>
-                <div className="mt-4 flex gap-2">
-                  <Badge className="bg-[#073737]">React.js</Badge>
-                  <Badge className="bg-[#073737]">Supabase</Badge>
-                  <Badge className="bg-[#073737]">AI</Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="h-full">
-              <CardHeader>
-                <CardTitle>Admin Dashboard</CardTitle>
-                <CardDescription>Web Application</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                  <li>
-                    Developed a web app UI that allows an admin to view all active and inactive users on their system.
-                  </li>
-                </ul>
-                <div className="mt-4 flex gap-2">
-                  <Badge className="bg-[#073737]">HTML</Badge>
-                  <Badge className="bg-[#073737]">CSS</Badge>
-                  <Badge className="bg-[#073737]">JS</Badge>
-                  <a href="https://abel-ronoh.github.io/admin-dashboard/"> <Badge className="bg-transparent border-2 border-[#073737] text-black hover:bg-[#073737] hover:text-white">View</Badge></a>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="h-full">
-              <CardHeader>
-                <CardTitle>TechInnovatorsHub</CardTitle>
-                <CardDescription>Founder & Lead Organizer</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                  <li>Founded a 50+ member community; hosted online workshops.</li>
-                  <li>Mentored 22 students in JavaScript fundamentals.</li>
-                </ul>
-                <div className="mt-4 flex gap-2">
-                  <Badge className="bg-[#073737]">Community</Badge>
-                  <Badge className="bg-[#073737]">Mentorship</Badge>
-                  <Badge className="bg-[#073737]">JavaScript</Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      <ProjectsSectiion sheetUrl="https://docs.google.com/spreadsheets/d/e/2PACX-1vQAwzpnX5iDPFX_MOdHBfW-SbYldk2LBEHg7zTxi5NNFeerkAyS16bvAwsr_76QpnfeeGL5XWgfDHQX/pub?output=csv"/>
 
       {/* Skills Section */}
       <section id="skills" className="py-16 md:py-24">
