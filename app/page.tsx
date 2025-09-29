@@ -71,10 +71,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#073737]">
       {/* HERO */}
       <section className="relative bg-[#073737] min-h-[100vh] text-white flex flex-col items-center justify-center overflow-hidden">
-        <div className="bg-[#FDFDFD] w-11/12 md:w-9/12 p-3 rounded-3xl flex flex-col items-center">
+        <div className=" md:h-[80vh] h-[90vh] bg-[#FDFDFD] w-11/12 md:w-9/12 p-3 rounded-3xl flex flex-col items-center justify-between">
           {/* NAV */}
           <div className="w-full flex items-center justify-between">
             <nav className="flex justify-center items-center gap-4 overflow-x-auto pb-1 no-scrollbar text-black w-full ">
@@ -109,26 +109,7 @@ export default function Home() {
               </button>
             </nav>
 
-            <div className="flex items-center gap-3 text-black">
-              <a
-                href="https://www.linkedin.com/in/abel-ronoh-ab718a265/"
-                target="_blank"
-                rel="noreferrer"
-                className="hidden sm:inline-block"
-              >
-                <button className="bg-transparent border-4 border-[#0A3638] w-[96px] h-[43px] text-[#0A3638] m-1 font-[14px] hover:border-[#577955] hover:bg-[#577955] hover:text-white cursor-pointer ">
-                  Linkedin
-                </button>
-              </a>
-
-              <button
-                className="md:hidden p-2"
-                aria-label="Toggle menu"
-                onClick={() => setMobileMenu((v) => !v)}
-              >
-                <Menu className="h-6 w-6 text-[#073737]" />
-              </button>
-            </div>
+            
           </div>
 
           {/* Mobile menu (simple) */}
@@ -156,17 +137,17 @@ export default function Home() {
             style={{ WebkitOverflowScrolling: "touch"  }}
           >
             {/* HOME SLIDE */}
-            <div className="min-w-full snap-start flex flex-col md:flex-row items-center p-6 md:p-10">
-              <div className="md:w-1/2 mt-6 md:mt-0 px-4 md:px-8">
+            <div className="min-w-full h-full snap-start flex flex-col md:flex-row items-center p-6 md:p-10 ">
+              <div className="md:w-1/2 mt-6 md:mt-0 px-4 md:px-8 md:ml-20">
                 <h1 className="text-[14px] md:text-2xl font-bold mb-[7px] text-black ">HELLO</h1>
-                <h2 className="text-[28px] md:text-4xl font-light text-black mb-[7px]">
-                  I&#39;m <span className="text-[#E1B890] font-semibold">Abel Ronoh.</span>
+                <h2 className="text-[28px] md:text-4xl font-light text-black mb-[21px]">
+                  I&#39;m <span className="text-[#ff850b] md:text-5xl font-semibold">Abel Ronoh.</span>
                 </h2>
                 <h3 className="text-[24px] md:text-4xl font-bold mb-[7px] text-[#073737]">Software Engineer</h3>
 
                 <p className="text-[13px] md:text-lg text-gray-600 leading-relaxed mb-8">
-                  A Software Engineer based on the web. Building full-stack web applications
-                  with a focus on the overall architecture and the front-end experience.
+                 Based on the web. Building full-stack web applications
+                  with a focus on the overall architecture and the front-end User experience.
                 </p>
 
                 <div className="flex gap-3 flex-wrap">
@@ -181,7 +162,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="relative h-[280px] md:h-[400px] md:w-1/2 my-6 md:my-0 flex items-center justify-center">
+              <div className="relative invisible md:visible h-[280px] md:h-[600px] md:w-1/2 my-6 md:my-0 flex items-center justify-center">
                 <Image src={img} alt="ME" className="h-full object-contain" />
               </div>
             </div>
@@ -210,25 +191,25 @@ export default function Home() {
           </div>
 
           {/* Dot indicators */}
-          <div className="flex justify-center gap-3 mt-6">
+          <div className="flex justify-center gap-3 mt-6 ">
             <button
               onClick={() => scrollToSlide(0)}
               className={`w-3 h-3 rounded-full transition-colors ${
-                active === "home" ? "bg-[#E1B890]" : "bg-gray-300"
+                active === "home" ? "bg-[#ff850b]" : "bg-gray-300"
               }`}
               aria-label="Go to home slide"
             />
             <button
               onClick={() => scrollToSlide(1)}
               className={`w-3 h-3 rounded-full transition-colors ${
-                active === "skill" ? "bg-[#E1B890]" : "bg-gray-300"
+                active === "skill" ? "bg-[#ff850b]" : "bg-gray-300"
               }`}
               aria-label="Go to skills slide"
             />
             <button
               onClick={() => scrollToSlide(2)}
               className={`w-3 h-3 rounded-full transition-colors ${
-                active === "experience" ? "bg-[#E1B890]" : "bg-gray-300"
+                active === "experience" ? "bg-[#ff850b]" : "bg-gray-300"
               }`}
               aria-label="Go to experience slide"
             />
