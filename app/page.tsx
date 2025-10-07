@@ -137,8 +137,8 @@ export default function Home() {
             style={{ WebkitOverflowScrolling: "touch"  }}
           >
             {/* HOME SLIDE */}
-            <div className="min-w-full h-full snap-start flex flex-col md:flex-row items-center p-6 md:p-10 ">
-              <div className="md:w-1/2 mt-6 md:mt-0 px-4 md:px-8 md:ml-20">
+            <div className="overflow-hidden min-w-full h-full snap-start flex flex-col md:flex-row items-center p-6 md:p-10 ">
+              <div className="md:w-1/2 mt-6 md:mt-0 px-4 md:px-8 md:ml-0">
                 <h1 className="text-[14px] md:text-2xl font-bold mb-[7px] text-black ">HELLO</h1>
                 <h2 className="text-[28px] md:text-4xl font-light text-black mb-[21px]">
                   I&#39;m <span className="text-[#ff850b] md:text-5xl font-semibold">Abel Ronoh.</span>
@@ -168,26 +168,289 @@ export default function Home() {
             </div>
 
             {/* SKILLS SLIDE */}
-            <div className="min-w-full snap-start flex flex-col items-center justify-center text-black p-8 md:p-10">
-              <h2 className="text-2xl font-bold mb-4">My Skills</h2>
-              <ul className="list-disc list-inside text-base md:text-lg space-y-2">
-                <li>JavaScript / TypeScript</li>
-                <li>React / Next.js</li>
-                <li>Node.js / Express</li>
-                <li>Firebase / Supabase</li>
-                <li>Tailwind CSS</li>
-              </ul>
-            </div>
+           <div className="min-w-full snap-start flex flex-col items-center justify-center text-black p-8 md:p-10">
+  
+  
+  
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl">
+    {/* JavaScript / TypeScript Card */}
+    <div className="skill-card group relative bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#ff850b]/20">
+      <div className="flex items-center mb-3">
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-500 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+          <span className="text-white font-bold text-sm">JS/TS</span>
+        </div>
+        <h3 className="font-semibold text-gray-800">JavaScript / TypeScript</h3>
+      </div>
+      <p className="text-gray-600 text-sm mb-3">Modern ES6+ features, type safety with TypeScript</p>
+      <div className="skill-level h-1.5 bg-gray-200 rounded-full overflow-hidden">
+        <div className="skill-level-bar h-full bg-yellow-500 rounded-full" style={{ width: '90%' }}></div>
+      </div>
+    </div>
 
-            {/* EXPERIENCE SLIDE */}
-            <div className="min-w-full snap-start flex flex-col items-center justify-center text-black p-8 md:p-10">
-              <h2 className="text-2xl font-bold mb-4">Experience</h2>
-              <p className="text-base md:text-lg max-w-2xl text-center">
-                Worked on multiple projects including full-stack apps, Chrome extensions, and
-                real-time systems. Built team features like technician tracking, ETL pipelines,
-                and low-cost local LLM integrations.
-              </p>
+    {/* React / Next.js Card */}
+    <div className="skill-card group relative bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#ff850b]/20">
+      <div className="flex items-center mb-3">
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+          <span className="text-white font-bold text-sm">R/N</span>
+        </div>
+        <h3 className="font-semibold text-gray-800">React / Next.js</h3>
+      </div>
+      <p className="text-gray-600 text-sm mb-3">Component-based architecture, SSR with Next.js</p>
+      <div className="skill-level h-1.5 bg-gray-200 rounded-full overflow-hidden">
+        <div className="skill-level-bar h-full bg-blue-500 rounded-full" style={{ width: '85%' }}></div>
+      </div>
+    </div>
+
+    {/* Node.js / Express Card */}
+    <div className="skill-card group relative bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#ff850b]/20">
+      <div className="flex items-center mb-3">
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+          <span className="text-white font-bold text-sm">N/E</span>
+        </div>
+        <h3 className="font-semibold text-gray-800">Node.js / Express</h3>
+      </div>
+      <p className="text-gray-600 text-sm mb-3">Server-side development, REST APIs, middleware</p>
+      <div className="skill-level h-1.5 bg-gray-200 rounded-full overflow-hidden">
+        <div className="skill-level-bar h-full bg-green-500 rounded-full" style={{ width: '80%' }}></div>
+      </div>
+    </div>
+
+    {/* Firebase / Supabase Card */}
+    <div className="skill-card group relative bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#ff850b]/20">
+      <div className="flex items-center mb-3">
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-orange-500 to-yellow-500 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+          <span className="text-white font-bold text-sm">F/S</span>
+        </div>
+        <h3 className="font-semibold text-gray-800">Firebase / Supabase</h3>
+      </div>
+      <p className="text-gray-600 text-sm mb-3">Backend-as-a-Service, real-time databases, auth</p>
+      <div className="skill-level h-1.5 bg-gray-200 rounded-full overflow-hidden">
+        <div className="skill-level-bar h-full bg-orange-500 rounded-full" style={{ width: '75%' }}></div>
+      </div>
+    </div>
+
+    {/* Tailwind CSS Card */}
+    <div className="skill-card group relative bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#ff850b]/20">
+      <div className="flex items-center mb-3">
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+          <span className="text-white font-bold text-sm">TW</span>
+        </div>
+        <h3 className="font-semibold text-gray-800">Tailwind CSS</h3>
+      </div>
+      <p className="text-gray-600 text-sm mb-3">Utility-first CSS framework, responsive design</p>
+      <div className="skill-level h-1.5 bg-gray-200 rounded-full overflow-hidden">
+        <div className="skill-level-bar h-full bg-teal-500 rounded-full" style={{ width: '95%' }}></div>
+      </div>
+    </div>
+
+    {/* Additional Skills Card */}
+    <div className="skill-card group relative bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#ff850b]/20">
+      <div className="flex items-center mb-3">
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+          <span className="text-white font-bold text-sm">++</span>
+        </div>
+        <h3 className="font-semibold text-gray-800">More Technologies</h3>
+      </div>
+      <p className="text-gray-600 text-sm mb-3">Python, SQL, Git, Docker, and more</p>
+      <div className="skill-level h-1.5 bg-gray-200 rounded-full overflow-hidden">
+        <div className="skill-level-bar h-full bg-purple-500 rounded-full" style={{ width: '70%' }}></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* EXPERIENCE SLIDE */}
+<div className="min-w-full snap-start flex flex-col items-center justify-center text-black p-4 md:p-6">
+  
+  
+  <div className="w-full max-w-6xl h-[70vh] overflow-y-auto px-2">
+    <div className="flex flex-col lg:flex-row gap-6 pb-6">
+      {/* Experience Timeline - Left Side */}
+      <div className="lg:w-2/3">
+        <div className="relative pb-8">
+          {/* Timeline line */}
+          <div className="absolute left-4 md:left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#ff850b] to-[#073737]"></div>
+
+          {/* Zetech University Experience */}
+          <div className="relative mb-8 ml-12 md:ml-16 group">
+            <div className="absolute -left-8 md:-left-10 top-3 w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-r from-[#ff850b] to-orange-400 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <span className="text-white font-bold text-xs md:text-sm">ZU</span>
             </div>
+            
+            <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group-hover:border-[#ff850b]/30">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3">
+                <div className="mb-2 sm:mb-0">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-800">Software Engineer Attachée</h3>
+                  <p className="text-[#073737] font-semibold text-sm md:text-base">Zetech University</p>
+                </div>
+                <span className="inline-flex items-center px-2 py-1 rounded-full bg-[#073737] text-white text-xs font-medium">
+                  May - Aug 2025
+                </span>
+              </div>
+              
+              <div className="space-y-2">
+                <div className="flex items-start">
+                  <div className="w-1.5 h-1.5 bg-[#ff850b] rounded-full mt-1.5 mr-2 flex-shrink-0"></div>
+                  <span className="text-gray-700 text-sm">
+                    Developed AI career guidance chatbot for student support
+                  </span>
+                </div>
+                <div className="flex items-start">
+                  <div className="w-1.5 h-1.5 bg-[#ff850b] rounded-full mt-1.5 mr-2 flex-shrink-0"></div>
+                  <span className="text-gray-700 text-sm">
+                    Implemented local LLMs reducing API costs by 50%
+                  </span>
+                </div>
+              </div>
+              
+              <div className="flex flex-wrap gap-1 mt-3">
+                <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">AI/ML</span>
+                <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">LLM</span>
+                <span className="px-2 py-0.5 bg-purple-100 text-purple-800 rounded-full text-xs">Python</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Cadtech Services Experience */}
+          <div className="relative mb-6 ml-12 md:ml-16 group">
+            <div className="absolute -left-8 md:-left-10 top-3 w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-r from-[#073737] to-green-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <span className="text-white font-bold text-xs md:text-sm">CS</span>
+            </div>
+            
+            <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group-hover:border-[#073737]/30">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3">
+                <div className="mb-2 sm:mb-0">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-800">Software Engineering Intern</h3>
+                  <p className="text-[#073737] font-semibold text-sm md:text-base">Cadtech Services</p>
+                </div>
+                <span className="inline-flex items-center px-2 py-1 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-medium">
+                  Aug 2025 - Present
+                </span>
+              </div>
+              
+              <div className="space-y-2">
+                <div className="flex items-start">
+                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-1.5 mr-2 flex-shrink-0"></div>
+                  <span className="text-gray-700 text-sm">
+                    Full-stack development with React & Node.js
+                  </span>
+                </div>
+                <div className="flex items-start">
+                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-1.5 mr-2 flex-shrink-0"></div>
+                  <span className="text-gray-700 text-sm">
+                    Agile development & client project collaboration
+                  </span>
+                </div>
+              </div>
+              
+              <div className="flex flex-wrap gap-1 mt-3">
+                <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">React</span>
+                <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Node.js</span>
+                <span className="px-2 py-0.5 bg-purple-100 text-purple-800 rounded-full text-xs">Full-Stack</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Compact Stats Section - Right Side */}
+      <div className="lg:w-1/3">
+        <div className="bg-white rounded-xl md:rounded-2xl p-6 shadow-lg border border-gray-100">
+          <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-4 text-center">Career Snapshot</h3>
+          
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200">
+              <div className="text-xl md:text-2xl font-bold text-[#073737]">2+</div>
+              <div className="text-xs md:text-sm text-gray-600 font-medium">Professional Roles</div>
+            </div>
+            <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200">
+              <div className="text-xl md:text-2xl font-bold text-[#073737]">14+</div>
+              <div className="text-xs md:text-sm text-gray-600 font-medium">Months Experience</div>
+            </div>
+            <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg border border-orange-200">
+              <div className="text-xl md:text-2xl font-bold text-[#073737]">5+</div>
+              <div className="text-xs md:text-sm text-gray-600 font-medium">Projects Delivered</div>
+            </div>
+            <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200">
+              <div className="text-xl md:text-2xl font-bold text-[#073737]">2</div>
+              <div className="text-xs md:text-sm text-gray-600 font-medium">Companies</div>
+            </div>
+          </div>
+
+          {/* Skills Progress */}
+          <div className="space-y-4">
+            <h4 className="font-semibold text-gray-700 text-sm">Key Proficiencies</h4>
+            
+            <div className="space-y-3">
+              <div>
+                <div className="flex justify-between text-xs text-gray-600 mb-1">
+                  <span>Frontend Development</span>
+                  <span>90%</span>
+                </div>
+                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-blue-500 rounded-full" style={{ width: '90%' }}></div>
+                </div>
+              </div>
+              
+              <div>
+                <div className="flex justify-between text-xs text-gray-600 mb-1">
+                  <span>Backend Development</span>
+                  <span>45%</span>
+                </div>
+                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-green-500 rounded-full" style={{ width: '45%' }}></div>
+                </div>
+              </div>
+              
+              <div>
+                <div className="flex justify-between text-xs text-gray-600 mb-1">
+                  <span>AI/ML Integration</span>
+                  <span>70%</span>
+                </div>
+                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-purple-500 rounded-full" style={{ width: '70%' }}></div>
+                </div>
+              </div>
+              
+              <div>
+                <div className="flex justify-between text-xs text-gray-600 mb-1">
+                  <span>Team Collaboration</span>
+                  <span>95%</span>
+                </div>
+                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-orange-500 rounded-full" style={{ width: '95%' }}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Facts */}
+          <div className="mt-6 pt-4 border-t border-gray-200">
+            <h4 className="font-semibold text-gray-700 text-sm mb-3">Quick Facts</h4>
+            <div className="space-y-2 text-xs text-gray-600">
+              <div className="flex items-center">
+                <div className="w-1.5 h-1.5 bg-[#ff850b] rounded-full mr-2"></div>
+                <span>AI Chatbot Development</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-1.5 h-1.5 bg-[#073737] rounded-full mr-2"></div>
+                <span>Full-Stack Applications</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></div>
+                <span>Agile Methodology</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></div>
+                <span>Cost Optimization</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
           </div>
 
           {/* Dot indicators */}
