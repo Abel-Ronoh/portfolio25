@@ -73,707 +73,1072 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#073737]">
       {/* HERO */}
-      <section className="relative bg-[#073737] min-h-[100vh] text-white flex flex-col items-center justify-center overflow-hidden">
-        <div className=" md:h-[80vh] h-[90vh] bg-[#FDFDFD] w-11/12 md:w-9/12 p-3 rounded-3xl flex flex-col items-center justify-between">
-          {/* NAV */}
-          <div className="w-full flex items-center justify-between">
-            <nav className="flex justify-center items-center gap-4 overflow-x-auto pb-1 no-scrollbar text-black w-full ">
-              <button
-                aria-current={active === "home"}
-                onClick={() => handleNavClick("home")}
-                className={`px-2 py-1 text-sm md:text-base focus:outline-none ${
-                  active === "home" ? "border-b-2 border-black" : "opacity-80"
-                }`}
-              >
-                HOME
-              </button>
-
-              <button
-                aria-current={active === "skill"}
-                onClick={() => handleNavClick("skill")}
-                className={`px-2 py-1 text-sm md:text-base focus:outline-none ${
-                  active === "skill" ? "border-b-2 border-black" : "opacity-80"
-                }`}
-              >
-                SKILL
-              </button>
-
-              <button
-                aria-current={active === "experience"}
-                onClick={() => handleNavClick("experience")}
-                className={`px-2 py-1 text-sm md:text-base focus:outline-none ${
-                  active === "experience" ? "border-b-2 border-black" : "opacity-80"
-                }`}
-              >
-                EXPERIENCE
-              </button>
-            </nav>
-
-            
-          </div>
-
-          {/* Mobile menu (simple) */}
-          {mobileMenu && (
-            <div className="w-full mt-3 flex flex-col items-center gap-2 text-black">
-              <button onClick={() => handleNavClick("home")} className="w-full text-left px-4 py-2 text-black">
-                HOME
-              </button>
-              <button onClick={() => handleNavClick("skill")} className="w-full text-left px-4 py-2 text-black">
-                SKILL
-              </button>
-              <button onClick={() => handleNavClick("experience")} className="w-full text-left px-4 py-2">
-                EXPERIENCE
-              </button>
-              <a href="https://www.linkedin.com/in/abel-ronoh-ab718a265/" className="w-full text-left px-4 py-2">
-                Linkedin
-              </a>
-            </div>
-          )}
-
-          {/* HORIZONTAL SLIDER (clickable nav + swipe/scroll) */}
-          <div
-            ref={sliderRef}
-            className="relative w-full mt-6 flex overflow-x-auto snap-x snap-mandatory scroll-smooth touch-pan-x -mx-3 md:-mx-0 no-scrollbar"
-            style={{ WebkitOverflowScrolling: "touch"  }}
-          >
-            {/* HOME SLIDE */}
-            <div className="overflow-hidden min-w-full h-full snap-start flex flex-col md:flex-row items-center p-6 md:p-10 ">
-              <div className="md:w-1/2 mt-6 md:mt-0 px-4 md:px-8 md:ml-0">
-                <h1 className="text-[14px] md:text-2xl font-bold mb-[7px] text-black ">HELLO</h1>
-                <h2 className="text-[28px] md:text-4xl font-light text-black mb-[21px]">
-                  I&#39;m <span className="text-[#ff850b] md:text-5xl font-semibold">Abel Ronoh.</span>
-                </h2>
-                <h3 className="text-[24px] md:text-4xl font-bold mb-[7px] text-[#073737]">Software Engineer</h3>
-
-                <p className="text-[13px] md:text-lg text-gray-600 leading-relaxed mb-8">
-                 Based on the web. Building full-stack web applications
-                  with a focus on the overall architecture and the front-end User experience.
-                </p>
-
-                <div className="flex gap-3 flex-wrap">
-                  <button className="bg-[#0A3638] w-[96px] h-[43px] text-white m-1 font-[14px] hover:bg-[#577955] cursor-pointer ">
-                    Let&#39;s Talk
-                  </button>
-                  <button className="bg-transparent border-4 border-[#0A3638] w-[96px] h-[43px] text-[#0A3638]  m-1 font-[14px] hover:border-[#577955] hover:bg-[#577955] hover:text-white cursor-pointer ">
-                    <a href="https://github.com/Abel-Ronoh" target="_blank" rel="noreferrer">
-                      GitHub
-                    </a>
-                  </button>
-                </div>
-              </div>
-
-              <div className="relative invisible md:visible h-[280px] md:h-[600px] md:w-1/2 my-6 md:my-0 flex items-center justify-center">
-                <Image src={img} alt="ME" className="h-full object-contain" />
-              </div>
-            </div>
-
-            {/* SKILLS SLIDE */}
-           <div className="min-w-full snap-start flex flex-col items-center justify-center text-black p-8 md:p-10">
-  
-  
-  
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl">
-    {/* JavaScript / TypeScript Card */}
-    <div className="skill-card group relative bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#ff850b]/20">
-      <div className="flex items-center mb-3">
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-500 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-          <span className="text-white font-bold text-sm">JS/TS</span>
-        </div>
-        <h3 className="font-semibold text-gray-800">JavaScript / TypeScript</h3>
-      </div>
-      <p className="text-gray-600 text-sm mb-3">Modern ES6+ features, type safety with TypeScript</p>
-      <div className="skill-level h-1.5 bg-gray-200 rounded-full overflow-hidden">
-        <div className="skill-level-bar h-full bg-yellow-500 rounded-full" style={{ width: '90%' }}></div>
-      </div>
-    </div>
-
-    {/* React / Next.js Card */}
-    <div className="skill-card group relative bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#ff850b]/20">
-      <div className="flex items-center mb-3">
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-          <span className="text-white font-bold text-sm">R/N</span>
-        </div>
-        <h3 className="font-semibold text-gray-800">React / Next.js</h3>
-      </div>
-      <p className="text-gray-600 text-sm mb-3">Component-based architecture, SSR with Next.js</p>
-      <div className="skill-level h-1.5 bg-gray-200 rounded-full overflow-hidden">
-        <div className="skill-level-bar h-full bg-blue-500 rounded-full" style={{ width: '85%' }}></div>
-      </div>
-    </div>
-
-    {/* Node.js / Express Card */}
-    <div className="skill-card group relative bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#ff850b]/20">
-      <div className="flex items-center mb-3">
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-          <span className="text-white font-bold text-sm">N/E</span>
-        </div>
-        <h3 className="font-semibold text-gray-800">Node.js / Express</h3>
-      </div>
-      <p className="text-gray-600 text-sm mb-3">Server-side development, REST APIs, middleware</p>
-      <div className="skill-level h-1.5 bg-gray-200 rounded-full overflow-hidden">
-        <div className="skill-level-bar h-full bg-green-500 rounded-full" style={{ width: '80%' }}></div>
-      </div>
-    </div>
-
-    {/* Firebase / Supabase Card */}
-    <div className="skill-card group relative bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#ff850b]/20">
-      <div className="flex items-center mb-3">
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-orange-500 to-yellow-500 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-          <span className="text-white font-bold text-sm">F/S</span>
-        </div>
-        <h3 className="font-semibold text-gray-800">Firebase / Supabase</h3>
-      </div>
-      <p className="text-gray-600 text-sm mb-3">Backend-as-a-Service, real-time databases, auth</p>
-      <div className="skill-level h-1.5 bg-gray-200 rounded-full overflow-hidden">
-        <div className="skill-level-bar h-full bg-orange-500 rounded-full" style={{ width: '75%' }}></div>
-      </div>
-    </div>
-
-    {/* Tailwind CSS Card */}
-    <div className="skill-card group relative bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#ff850b]/20">
-      <div className="flex items-center mb-3">
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-          <span className="text-white font-bold text-sm">TW</span>
-        </div>
-        <h3 className="font-semibold text-gray-800">Tailwind CSS</h3>
-      </div>
-      <p className="text-gray-600 text-sm mb-3">Utility-first CSS framework, responsive design</p>
-      <div className="skill-level h-1.5 bg-gray-200 rounded-full overflow-hidden">
-        <div className="skill-level-bar h-full bg-teal-500 rounded-full" style={{ width: '95%' }}></div>
-      </div>
-    </div>
-
-    {/* Additional Skills Card */}
-    <div className="skill-card group relative bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#ff850b]/20">
-      <div className="flex items-center mb-3">
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-          <span className="text-white font-bold text-sm">++</span>
-        </div>
-        <h3 className="font-semibold text-gray-800">More Technologies</h3>
-      </div>
-      <p className="text-gray-600 text-sm mb-3">Python, SQL, Git, Docker, and more</p>
-      <div className="skill-level h-1.5 bg-gray-200 rounded-full overflow-hidden">
-        <div className="skill-level-bar h-full bg-purple-500 rounded-full" style={{ width: '70%' }}></div>
-      </div>
-    </div>
+<section className="relative bg-gradient-to-br from-[#073737] via-[#0A3638] to-[#052525] min-h-[100vh] text-white flex items-center justify-center overflow-hidden">
+  {/* Animated Background Elements */}
+  <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#ff850b]/10 rounded-full blur-3xl"></div>
+    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#ff850b]/5 rounded-full blur-3xl"></div>
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#ff850b]/10 rounded-full blur-3xl"></div>
   </div>
-</div>
 
-{/* EXPERIENCE SLIDE */}
-<div className="min-w-full snap-start flex flex-col items-center justify-center text-black p-4 md:p-6">
-  
-  
-  <div className="w-full max-w-6xl h-[70vh] overflow-y-auto px-2">
-    <div className="flex flex-col lg:flex-row gap-6 pb-6">
-      {/* Experience Timeline - Left Side */}
-      <div className="lg:w-2/3">
-        <div className="relative pb-8">
-          {/* Timeline line */}
-          <div className="absolute left-4 md:left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#ff850b] to-[#073737]"></div>
-
-          {/* Zetech University Experience */}
-          <div className="relative mb-8 ml-12 md:ml-16 group">
-            <div className="absolute -left-8 md:-left-10 top-3 w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-r from-[#ff850b] to-orange-400 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <span className="text-white font-bold text-xs md:text-sm">ZU</span>
-            </div>
-            
-            <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group-hover:border-[#ff850b]/30">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3">
-                <div className="mb-2 sm:mb-0">
-                  <h3 className="text-lg md:text-xl font-bold text-gray-800">Software Engineer Attachée</h3>
-                  <p className="text-[#073737] font-semibold text-sm md:text-base">Zetech University</p>
-                </div>
-                <span className="inline-flex items-center px-2 py-1 rounded-full bg-[#073737] text-white text-xs font-medium">
-                  May - Aug 2025
-                </span>
-              </div>
-              
-              <div className="space-y-2">
-                <div className="flex items-start">
-                  <div className="w-1.5 h-1.5 bg-[#ff850b] rounded-full mt-1.5 mr-2 flex-shrink-0"></div>
-                  <span className="text-gray-700 text-sm">
-                    Developed AI career guidance chatbot for student support
-                  </span>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-1.5 h-1.5 bg-[#ff850b] rounded-full mt-1.5 mr-2 flex-shrink-0"></div>
-                  <span className="text-gray-700 text-sm">
-                    Implemented local LLMs reducing API costs by 50%
-                  </span>
-                </div>
-              </div>
-              
-              <div className="flex flex-wrap gap-1 mt-3">
-                <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">AI/ML</span>
-                <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">LLM</span>
-                <span className="px-2 py-0.5 bg-purple-100 text-purple-800 rounded-full text-xs">Python</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Cadtech Services Experience */}
-          <div className="relative mb-6 ml-12 md:ml-16 group">
-            <div className="absolute -left-8 md:-left-10 top-3 w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-r from-[#073737] to-green-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <span className="text-white font-bold text-xs md:text-sm">CS</span>
-            </div>
-            
-            <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group-hover:border-[#073737]/30">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3">
-                <div className="mb-2 sm:mb-0">
-                  <h3 className="text-lg md:text-xl font-bold text-gray-800">Software Engineering Intern</h3>
-                  <p className="text-[#073737] font-semibold text-sm md:text-base">Cadtech Services</p>
-                </div>
-                <span className="inline-flex items-center px-2 py-1 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-medium">
-                  Aug 2025 - Present
-                </span>
-              </div>
-              
-              <div className="space-y-2">
-                <div className="flex items-start">
-                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-1.5 mr-2 flex-shrink-0"></div>
-                  <span className="text-gray-700 text-sm">
-                    Full-stack development with React & Node.js
-                  </span>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-1.5 mr-2 flex-shrink-0"></div>
-                  <span className="text-gray-700 text-sm">
-                    Agile development & client project collaboration
-                  </span>
-                </div>
-              </div>
-              
-              <div className="flex flex-wrap gap-1 mt-3">
-                <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs">React</span>
-                <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Node.js</span>
-                <span className="px-2 py-0.5 bg-purple-100 text-purple-800 rounded-full text-xs">Full-Stack</span>
-              </div>
-            </div>
-          </div>
+  {/* Main Content Container */}
+  <div className="relative z-10 w-11/12 md:w-10/12 max-w-7xl">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Left Content - Text & Info */}
+      <div className="text-center lg:text-left space-y-8">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
+          <div className="w-2 h-2 bg-[#ff850b] rounded-full animate-pulse"></div>
+          <span className="text-sm font-medium">Available for new opportunities</span>
         </div>
-      </div>
 
-      {/* Compact Stats Section - Right Side */}
-      <div className="lg:w-1/3">
-        <div className="bg-white rounded-xl md:rounded-2xl p-6 shadow-lg border border-gray-100">
-          <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-4 text-center">Career Snapshot</h3>
-          
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200">
-              <div className="text-xl md:text-2xl font-bold text-[#073737]">2+</div>
-              <div className="text-xs md:text-sm text-gray-600 font-medium">Professional Roles</div>
-            </div>
-            <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200">
-              <div className="text-xl md:text-2xl font-bold text-[#073737]">14+</div>
-              <div className="text-xs md:text-sm text-gray-600 font-medium">Months Experience</div>
-            </div>
-            <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg border border-orange-200">
-              <div className="text-xl md:text-2xl font-bold text-[#073737]">5+</div>
-              <div className="text-xs md:text-sm text-gray-600 font-medium">Projects Delivered</div>
-            </div>
-            <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200">
-              <div className="text-xl md:text-2xl font-bold text-[#073737]">2</div>
-              <div className="text-xs md:text-sm text-gray-600 font-medium">Companies</div>
-            </div>
-          </div>
-
-          {/* Skills Progress */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-gray-700 text-sm">Key Proficiencies</h4>
-            
-            <div className="space-y-3">
-              <div>
-                <div className="flex justify-between text-xs text-gray-600 mb-1">
-                  <span>Frontend Development</span>
-                  <span>90%</span>
-                </div>
-                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-blue-500 rounded-full" style={{ width: '90%' }}></div>
-                </div>
-              </div>
-              
-              <div>
-                <div className="flex justify-between text-xs text-gray-600 mb-1">
-                  <span>Backend Development</span>
-                  <span>45%</span>
-                </div>
-                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-green-500 rounded-full" style={{ width: '45%' }}></div>
-                </div>
-              </div>
-              
-              <div>
-                <div className="flex justify-between text-xs text-gray-600 mb-1">
-                  <span>AI/ML Integration</span>
-                  <span>70%</span>
-                </div>
-                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-purple-500 rounded-full" style={{ width: '70%' }}></div>
-                </div>
-              </div>
-              
-              <div>
-                <div className="flex justify-between text-xs text-gray-600 mb-1">
-                  <span>Team Collaboration</span>
-                  <span>95%</span>
-                </div>
-                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-orange-500 rounded-full" style={{ width: '95%' }}></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Facts */}
-          <div className="mt-6 pt-4 border-t border-gray-200">
-            <h4 className="font-semibold text-gray-700 text-sm mb-3">Quick Facts</h4>
-            <div className="space-y-2 text-xs text-gray-600">
-              <div className="flex items-center">
-                <div className="w-1.5 h-1.5 bg-[#ff850b] rounded-full mr-2"></div>
-                <span>AI Chatbot Development</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-1.5 h-1.5 bg-[#073737] rounded-full mr-2"></div>
-                <span>Full-Stack Applications</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></div>
-                <span>Agile Methodology</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></div>
-                <span>Cost Optimization</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-          </div>
-
-          {/* Dot indicators */}
-          <div className="flex justify-center gap-3 mt-6 ">
-            <button
-              onClick={() => scrollToSlide(0)}
-              className={`w-3 h-3 rounded-full transition-colors ${
-                active === "home" ? "bg-[#ff850b]" : "bg-gray-300"
-              }`}
-              aria-label="Go to home slide"
-            />
-            <button
-              onClick={() => scrollToSlide(1)}
-              className={`w-3 h-3 rounded-full transition-colors ${
-                active === "skill" ? "bg-[#ff850b]" : "bg-gray-300"
-              }`}
-              aria-label="Go to skills slide"
-            />
-            <button
-              onClick={() => scrollToSlide(2)}
-              className={`w-3 h-3 rounded-full transition-colors ${
-                active === "experience" ? "bg-[#ff850b]" : "bg-gray-300"
-              }`}
-              aria-label="Go to experience slide"
-            />
+        {/* Main Headline */}
+        <div className="space-y-4">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              Hello, I'm
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-[#ff850b] to-orange-400 bg-clip-text text-transparent">
+              Abel Ronoh
+            </span>
+          </h1>
+          <div className="text-xl md:text-2xl text-gray-300 font-light">
+            Full-Stack Developer & AI Enthusiast
           </div>
         </div>
 
-        {/* Bottom Scroll Icon */}
-        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <Button variant="ghost" size="icon" className="rounded-full" onClick={scrollToAbout}>
-            <ChevronDown className="h-6 w-6" />
+        {/* Description */}
+        <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl">
+          I craft <span className="text-[#ff850b] font-semibold">digital experiences</span> that blend 
+          cutting-edge technology with elegant design. Specializing in full-stack development, 
+          AI integration, and scalable solutions that drive real impact.
+        </p>
+
+        {/* Quick Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 py-6">
+          <div className="text-center">
+            <div className="text-2xl md:text-3xl font-bold text-[#ff850b]">1+</div>
+            <div className="text-sm text-gray-400">Years Experience</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl md:text-3xl font-bold text-[#ff850b]">10+</div>
+            <div className="text-sm text-gray-400">Projects Delivered</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl md:text-3xl font-bold text-[#ff850b]">5+</div>
+            <div className="text-sm text-gray-400">Technologies</div>
+          </div>
+        </div>
+
+        {/* Tech Stack Preview */}
+        <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+          {["React", "Next.js", "TypeScript", "Node.js", "Python", "AI/ML"].map((tech) => (
+            <div key={tech} className="px-4 py-2 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-[#ff850b]/30 transition-all duration-300">
+              <span className="text-gray-300 text-sm font-medium">{tech}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-6">
+          <Button className="bg-gradient-to-r from-[#ff850b] to-orange-500 hover:from-orange-500 hover:to-[#ff850b] text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            Let's Build Together
+            <ChevronDown className="ml-2 h-5 w-5" />
+          </Button>
+          <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300">
+            View My Work
           </Button>
         </div>
-      </section>
+      </div>
 
-      {/* Rest of your existing code remains the same */}
-      {/* ABOUT / PROFILE SUMMARY */}
-      <section id="about" className="py-16 md:py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-[#073737] text-center">PROFILE SUMMARY</h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-8">
-              I am a web developer with 1 year of experience in developing full stack projects using React, Next JS, javascript, html, css, express, firebase, Supabase and sql.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-[#073737]">Contact Information</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <Phone className="h-5 w-5 text-[#073737]" />
-                    <span>+254-794-140-776</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Mail className="h-5 w-5 text-[#073737]" />
-                    <span>abellronoh@gmail.com</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Linkedin className="h-5 w-5 text-[#073737]" />
-                    <a href="http://www.linkedin.com/in/abel-ronoh-ab718a265y" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Github className="h-5 w-5 text-[#073737]" />
-                    <a href="https://github.com/Abel-Ronoh" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">GitHub</a>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-[#073737]">Education</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <h3 className="font-semibold">ZETECH UNIVERSITY</h3>
-                    <p className="text-gray-600">Bachelors in Software Engineering</p>
-                    <p className="text-sm text-gray-500">2022 - 2025</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">ZOOMCAMP SHORT COURSE</h3>
-                    <p className="text-gray-600">Certification on Data Engineering</p>
-                    <p className="text-sm text-gray-500">JAN - MAY 2024</p>
-                  </div>
-                </CardContent>
-              </Card>
+      {/* Right Content - Profile & Visual Elements */}
+      <div className="relative">
+        {/* Profile Image Container */}
+        <div className="relative mx-auto lg:mx-0 max-w-md">
+          {/* Background Glow */}
+          <div className="absolute -inset-4 bg-gradient-to-r from-[#ff850b] to-orange-500 rounded-3xl blur-xl opacity-20"></div>
+          
+          {/* Main Image */}
+          <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl border border-white/20 p-8">
+            <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden">
+              <Image 
+                src={img} 
+                alt="Abel Ronoh - Software Engineer" 
+                fill
+                className="object-cover rounded-2xl hover:scale-105 transition-transform duration-500"
+                priority
+              />
+              {/* Overlay Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#073737]/80 to-transparent rounded-2xl"></div>
+            </div>
+            
+            {/* Floating Info Cards */}
+            <div className="absolute -bottom-6 -left-6 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 shadow-2xl">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white">14+</div>
+                <div className="text-xs text-gray-300">Months Exp</div>
+              </div>
+            </div>
+            
+            <div className="absolute -top-6 -right-6 bg-[#ff850b]/20 backdrop-blur-sm rounded-xl p-4 border border-[#ff850b]/30 shadow-2xl">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white">AI</div>
+                <div className="text-xs text-gray-300">Specialist</div>
+              </div>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Experience Section */}
-      <section id="experience" className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-[#073737] text-center">WORK EXPERIENCE</h2>
-          <div className="max-w-4xl mx-auto space-y-8">
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle>Software Engineer Attachee</CardTitle>
-                    <CardDescription>Zetech University</CardDescription>
-                  </div>
-                  <Badge className="bg-[#073737]">May - Aug 2025</Badge>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                  <li>
-                    developed an AI chat bot that helps users to make career choices and easily assess career options in the university
-                  </li>
-                  <li>
-                    Utilized a locally running LLM for the user responses, that would reduce API cost by 50%.
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+        {/* Floating Elements */}
+        <div className="absolute top-10 -left-10 w-24 h-24 bg-[#ff850b]/10 rounded-full blur-xl animate-float"></div>
+        <div className="absolute bottom-20 -right-10 w-32 h-32 bg-white/5 rounded-full blur-xl animate-float-delayed"></div>
+      </div>
+    </div>
 
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle>Hackathon Participant</CardTitle>
-                    <CardDescription>Davis & Shirtliff, Nairobi</CardDescription>
-                  </div>
-                  <Badge className="bg-[#073737]">March 2025</Badge>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                  <li>
-                    Collaborated in a cross-functional team to build a geolocation-based service app with real-time
-                    technician tracking.
-                  </li>
-                  <li>
-                    Integrated Google Maps API to optimize service provider discovery, reducing user search time by 40%.
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+    {/* Scroll Indicator */}
+    <div className="absolute bottom-[-20px]  left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="flex flex-col items-center gap-2">
+        <span className="text-sm text-gray-400">Explore More</span>
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300"
+          onClick={scrollToAbout}
+        >
+          <ChevronDown className="h-6 w-6 text-white" />
+        </Button>
+      </div>
+    </div>
+  </div>
 
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle>ETL Pipeline for User Analytics</CardTitle>
-                    <CardDescription>Data Engineering</CardDescription>
+  {/* Navigation Arrows - Hidden on mobile, visible on desktop */}
+  <div className="hidden lg:block absolute left-8 top-1/2 transform -translate-y-1/2 z-20">
+    <button
+      onClick={() => {
+        const currentIndex = slideIndex[active];
+        const prevIndex = currentIndex === 0 ? 2 : currentIndex - 1;
+        scrollToSlide(prevIndex);
+      }}
+      className="group p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+    >
+      <div className="flex items-center">
+        <div className="w-6 h-6 border-l-2 border-t-2 border-white transform -rotate-45 group-hover:border-[#ff850b] transition-colors duration-300"></div>
+        <div className="ml-2 w-12 h-0.5 bg-white group-hover:bg-[#ff850b] transition-colors duration-300"></div>
+      </div>
+    </button>
+  </div>
+
+  <div className="hidden lg:block absolute right-8 top-1/2 transform -translate-y-1/2 z-20">
+    <button
+      onClick={() => {
+        const currentIndex = slideIndex[active];
+        const nextIndex = currentIndex === 2 ? 0 : currentIndex + 1;
+        scrollToSlide(nextIndex);
+      }}
+      className="group p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+    >
+      <div className="flex items-center">
+        <div className="mr-2 w-12 h-0.5 bg-white group-hover:bg-[#ff850b] transition-colors duration-300"></div>
+        <div className="w-6 h-6 border-r-2 border-t-2 border-white transform rotate-45 group-hover:border-[#ff850b] transition-colors duration-300"></div>
+      </div>
+    </button>
+  </div>
+</section>
+
+     {/* ABOUT / PROFILE SUMMARY */}
+<section id="about" className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white">
+  <div className="container mx-auto px-4">
+    <div className="max-w-6xl mx-auto">
+      {/* Header with creative design */}
+      <div className="text-center mb-16">
+        <div className="inline-flex items-center justify-center mb-4">
+          <div className="w-3 h-3 bg-[#ff850b] rounded-full mr-3"></div>
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-[#073737] to-[#0A3638] bg-clip-text text-transparent">
+            About Me
+          </h2>
+          <div className="w-3 h-3 bg-[#ff850b] rounded-full ml-3"></div>
+        </div>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          Passionate Software Engineer crafting digital experiences that make a difference
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        {/* Main Profile Card */}
+        <div className="lg:col-span-2">
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+            <div className="flex items-start mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-[#073737] to-[#0A3638] rounded-2xl flex items-center justify-center mr-4">
+                <span className="text-white text-2xl font-bold">AR</span>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">Abel Ronoh</h3>
+                <p className="text-[#ff850b] font-semibold">Full-Stack Developer & AI Enthusiast</p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <p className="text-gray-700 leading-relaxed">
+                I'm a passionate software engineer with expertise in building modern web applications 
+                that solve real-world problems. My journey combines technical excellence with creative 
+                problem-solving to deliver exceptional user experiences.
+              </p>
+              
+              <div className="grid grid-cols-2 gap-4 py-4">
+                <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200">
+                  <div className="text-2xl font-bold text-[#073737]">1+</div>
+                  <div className="text-sm text-gray-600 font-medium">Years Experience</div>
+                </div>
+                <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border border-green-200">
+                  <div className="text-2xl font-bold text-[#073737]">10+</div>
+                  <div className="text-sm text-gray-600 font-medium">Projects Completed</div>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-gray-200">
+                <h4 className="font-semibold text-gray-800 mb-3">What I Bring to the Table</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-[#ff850b] rounded-full mr-3"></div>
+                    <span className="text-gray-700 text-sm">Clean, maintainable code architecture</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-[#ff850b] rounded-full mr-3"></div>
+                    <span className="text-gray-700 text-sm">Performance optimization expertise</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-[#ff850b] rounded-full mr-3"></div>
+                    <span className="text-gray-700 text-sm">AI/ML integration capabilities</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-[#ff850b] rounded-full mr-3"></div>
+                    <span className="text-gray-700 text-sm">Agile development methodology</span>
                   </div>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                  <li>Implemented a data pipeline for logging user interactions using Python and PostgreSQL.</li>
-                  <li>
-                    Built an Apache Airflow pipeline to automate ingestion and transformation of user activity data into
-                    BigQuery.
-                  </li>
-                  <li>Reduced data processing time by 35% using PySpark for batch processing and partitioning.</li>
-                  <li>Tech Stack: Python, GCP, dbt (data transformation), Snowflake (storage).</li>
-                </ul>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+
+        {/* Quick Info Sidebar */}
+        <div className="space-y-6">
+          {/* Contact Card */}
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <h3 className="text-lg font-bold text-[#073737] mb-4 flex items-center">
+              <div className="w-2 h-2 bg-[#ff850b] rounded-full mr-2"></div>
+              Get In Touch
+            </h3>
+            <div className="space-y-3">
+              <div className="flex items-center group cursor-pointer">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors">
+                  <Phone className="h-4 w-4 text-blue-600" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Phone</p>
+                  <p className="font-medium text-gray-800">+254-794-140-776</p>
+                </div>
+              </div>
+              <div className="flex items-center group cursor-pointer">
+                <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-red-200 transition-colors">
+                  <Mail className="h-4 w-4 text-red-600" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Email</p>
+                  <p className="font-medium text-gray-800">abellronoh@gmail.com</p>
+                </div>
+              </div>
+              <div className="flex items-center group cursor-pointer">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors">
+                  <Linkedin className="h-4 w-4 text-blue-600" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">LinkedIn</p>
+                  <a href="http://www.linkedin.com/in/abel-ronoh-ab718a265y" className="font-medium text-gray-800 hover:text-blue-600 transition-colors" target="_blank" rel="noopener noreferrer">
+                    Abel Ronoh
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-center group cursor-pointer">
+                <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
+                  <Github className="h-4 w-4 text-gray-800" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">GitHub</p>
+                  <a href="https://github.com/Abel-Ronoh" className="font-medium text-gray-800 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer">
+                    Abel-Ronoh
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Education Card */}
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <h3 className="text-lg font-bold text-[#073737] mb-4 flex items-center">
+              <div className="w-2 h-2 bg-[#ff850b] rounded-full mr-2"></div>
+              Education
+            </h3>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold text-gray-800">ZETECH UNIVERSITY</h4>
+                <p className="text-gray-600 text-sm">Bachelors in Software Engineering</p>
+                <p className="text-xs text-gray-500 mt-1">2022 - 2025</p>
+              </div>
+              <div className="pt-3 border-t border-gray-100">
+                <h4 className="font-semibold text-gray-800">ZOOMCAMP SHORT COURSE</h4>
+                <p className="text-gray-600 text-sm">Certification on Data Engineering</p>
+                <p className="text-xs text-gray-500 mt-1">JAN - MAY 2024</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Tech Stack Highlights */}
+      <div className="bg-gradient-to-r from-[#073737] to-[#0A3638] rounded-2xl p-8 text-white">
+        <h3 className="text-2xl font-bold mb-6 text-center">Tech Stack Highlights</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="text-center group">
+            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:bg-white/30 transition-colors">
+              <span className="text-white font-bold text-lg">JS/TS</span>
+            </div>
+            <p className="font-medium">JavaScript/TypeScript</p>
+          </div>
+          <div className="text-center group">
+            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:bg-white/30 transition-colors">
+              <span className="text-white font-bold text-lg">R/N</span>
+            </div>
+            <p className="font-medium">React/Next.js</p>
+          </div>
+          <div className="text-center group">
+            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:bg-white/30 transition-colors">
+              <span className="text-white font-bold text-lg">N/E</span>
+            </div>
+            <p className="font-medium">Node.js/Express</p>
+          </div>
+          <div className="text-center group">
+            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:bg-white/30 transition-colors">
+              <span className="text-white font-bold text-lg">AI/ML</span>
+            </div>
+            <p className="font-medium">AI Integration</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{/* Skills Section */}
+<section id="skills" className="py-16 md:py-24 bg-gradient-to-br from-white to-gray-50">
+  <div className="container mx-auto px-4">
+    {/* Header */}
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center justify-center mb-4">
+        <div className="w-3 h-3 bg-[#ff850b] rounded-full mr-3"></div>
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-[#073737] to-[#0A3638] bg-clip-text text-transparent">
+          My Digital Toolkit
+        </h2>
+        <div className="w-3 h-3 bg-[#ff850b] rounded-full ml-3"></div>
+      </div>
+      <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        Crafting digital experiences with modern tools and proven methodologies
+      </p>
+    </div>
+
+    <div className="max-w-6xl mx-auto">
+      {/* Skills Journey Story */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        {/* Storytelling Section */}
+        <div className="space-y-6">
+          <h3 className="text-2xl font-bold text-[#073737] mb-6">My Development Journey</h3>
+          
+          <div className="space-y-4">
+            <div className="flex items-start">
+              <div className="w-8 h-8 bg-gradient-to-r from-[#073737] to-[#0A3638] rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <span className="text-white text-sm font-bold">1</span>
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-800 mb-2">Foundation & Collaboration</h4>
+                <p className="text-gray-600">
+                  My journey begins with <strong>Open Source Software Configuration</strong> and <strong>Git</strong> - 
+                  mastering the art of collaboration and version control. These tools taught me the importance of 
+                  clean, maintainable code and effective team workflows.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start">
+              <div className="w-8 h-8 bg-gradient-to-r from-[#ff850b] to-orange-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <span className="text-white text-sm font-bold">2</span>
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-800 mb-2">Modern Frontend Architecture</h4>
+                <p className="text-gray-600">
+                  With <strong>React.js/Next.js</strong> and <strong>Tailwind CSS</strong>, I build responsive, 
+                  performant interfaces. From component-driven design to server-side rendering, I create experiences 
+                  that are both beautiful and functional.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start">
+              <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <span className="text-white text-sm font-bold">3</span>
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-800 mb-2">Data & Deployment Excellence</h4>
+                <p className="text-gray-600">
+                  Using <strong>PostgreSQL</strong>, <strong>Supabase/Firebase</strong>, and <strong>Docker</strong>, 
+                  I ensure robust data management and seamless deployment. Every application deserves a solid foundation 
+                  and scalable infrastructure.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start">
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <span className="text-white text-sm font-bold">4</span>
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-800 mb-2">Design to Development</h4>
+                <p className="text-gray-600">
+                  With <strong>Figma</strong>, I bridge the gap between design and implementation. Transforming 
+                  creative visions into pixel-perfect, interactive experiences is where art meets engineering.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Visual Skills Map */}
+        <div className="bg-gradient-to-br from-[#073737] to-[#0A3638] rounded-2xl p-8 text-white">
+          <h3 className="text-2xl font-bold mb-8 text-center">Skills Ecosystem</h3>
+          
+          <div className="grid grid-cols-2 gap-6">
+            {/* Development */}
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:bg-white/30 transition-colors duration-300">
+                <span className="text-white font-bold text-lg">⚡</span>
+              </div>
+              <p className="font-semibold mb-2">Development</p>
+              <div className="space-y-1">
+                <div className="text-sm text-gray-300">React.js/Next.js</div>
+                <div className="text-sm text-gray-300">Tailwind CSS</div>
+              </div>
+            </div>
+
+            {/* DevOps */}
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:bg-white/30 transition-colors duration-300">
+                <span className="text-white font-bold text-lg">🔧</span>
+              </div>
+              <p className="font-semibold mb-2">DevOps</p>
+              <div className="space-y-1">
+                <div className="text-sm text-gray-300">Docker</div>
+                <div className="text-sm text-gray-300">Git</div>
+              </div>
+            </div>
+
+            {/* Database */}
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:bg-white/30 transition-colors duration-300">
+                <span className="text-white font-bold text-lg">💾</span>
+              </div>
+              <p className="font-semibold mb-2">Database</p>
+              <div className="space-y-1">
+                <div className="text-sm text-gray-300">PostgreSQL</div>
+                <div className="text-sm text-gray-300">Supabase/Firebase</div>
+              </div>
+            </div>
+
+            {/* Design & Tools */}
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:bg-white/30 transition-colors duration-300">
+                <span className="text-white font-bold text-lg">🎨</span>
+              </div>
+              <p className="font-semibold mb-2">Design & Tools</p>
+              <div className="space-y-1">
+                <div className="text-sm text-gray-300">Figma</div>
+                <div className="text-sm text-gray-300">Open Source</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Detailed Skills Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {/* Frontend Mastery */}
+        <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg bg-white">
+          <CardHeader className="pb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gradient-to-r from-[#ff850b] to-orange-500 rounded-xl flex items-center justify-center">
+                <span className="text-white font-bold text-lg">⚡</span>
+              </div>
+              <div>
+                <CardTitle className="text-gray-800">Frontend Excellence</CardTitle>
+                <CardDescription>Crafting modern user interfaces</CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg border border-orange-100">
+                <span className="font-semibold text-gray-700">React.js/Next.js</span>
+                <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-[#ff850b] rounded-full" style={{ width: '95%' }}></div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-cyan-50 rounded-lg border border-cyan-100">
+                <span className="font-semibold text-gray-700">Tailwind CSS</span>
+                <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-cyan-500 rounded-full" style={{ width: '90%' }}></div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Backend & Database */}
+        <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg bg-white">
+          <CardHeader className="pb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+                <span className="text-white font-bold text-lg">💾</span>
+              </div>
+              <div>
+                <CardTitle className="text-gray-800">Data & Backend</CardTitle>
+                <CardDescription>Robust data management</CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg border border-blue-100">
+                <span className="font-semibold text-gray-700">PostgreSQL</span>
+                <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-blue-500 rounded-full" style={{ width: '85%' }}></div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg border border-orange-100">
+                <span className="font-semibold text-gray-700">Supabase/Firebase</span>
+                <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-orange-500 rounded-full" style={{ width: '88%' }}></div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* DevOps & Tools */}
+        <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg bg-white">
+          <CardHeader className="pb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
+                <span className="text-white font-bold text-lg">🔧</span>
+              </div>
+              <div>
+                <CardTitle className="text-gray-800">DevOps & Tools</CardTitle>
+                <CardDescription>Efficient development workflow</CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg border border-blue-100">
+                <span className="font-semibold text-gray-700">Docker</span>
+                <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-blue-500 rounded-full" style={{ width: '82%' }}></div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-gray-100 rounded-lg border border-gray-200">
+                <span className="font-semibold text-gray-700">Git</span>
+                <div className="w-16 h-2 bg-gray-300 rounded-full overflow-hidden">
+                  <div className="h-full bg-gray-700 rounded-full" style={{ width: '92%' }}></div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg border border-purple-100">
+                <span className="font-semibold text-gray-700">Open Source</span>
+                <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-purple-500 rounded-full" style={{ width: '80%' }}></div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-pink-50 rounded-lg border border-pink-100">
+                <span className="font-semibold text-gray-700">Figma</span>
+                <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-pink-500 rounded-full" style={{ width: '78%' }}></div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Skills Philosophy */}
+      <div className="bg-gradient-to-r from-[#073737] to-[#0A3638] rounded-2xl p-8 text-white text-center">
+        <h3 className="text-2xl font-bold mb-4">My Development Philosophy</h3>
+        <p className="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
+          "I believe in building with purpose. Every line of code, every design decision, and every infrastructure choice 
+          serves a greater goal: creating digital solutions that are not just functional, but transformative. From 
+          open-source collaboration to production deployment, I ensure that technology serves people and businesses effectively."
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{/* Experience Section */}
+<section id="experience" className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white">
+  <div className="container mx-auto px-4">
+    {/* Header */}
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center justify-center mb-4">
+        <div className="w-3 h-3 bg-[#ff850b] rounded-full mr-3"></div>
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-[#073737] to-[#0A3638] bg-clip-text text-transparent">
+          Professional Journey
+        </h2>
+        <div className="w-3 h-3 bg-[#ff850b] rounded-full ml-3"></div>
+      </div>
+      <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        Transforming businesses through digital innovation and modern software solutions
+      </p>
+    </div>
+
+    <div className="max-w-6xl mx-auto">
+      {/* Experience Timeline */}
+      <div className="relative">
+        {/* Timeline line */}
+        <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#ff850b] to-[#073737] transform md:-translate-x-1/2"></div>
+
+        {/* Experience Items */}
+        <div className="space-y-12">
+          {/* Cadtech Services - Current Role */}
+          <div className="relative group">
+            <div className="flex flex-col md:flex-row md:items-center md:gap-12">
+              {/* Left Side - Date & Icon */}
+              <div className="md:w-1/2 md:text-right md:pr-12 mb-4 md:mb-0">
+                <div className="flex md:justify-end items-center">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-white font-bold text-sm">CS</span>
+                    </div>
+                    <div className="ml-4">
+                      <Badge className="bg-green-500 text-white px-3 py-1 text-sm">Aug 2025 - Present</Badge>
+                      <p className="text-sm text-gray-500 mt-1">Current Role</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side - Content */}
+              <div className="md:w-1/2 md:pl-12">
+                <Card className="group-hover:shadow-2xl group-hover:border-green-500/30 transition-all duration-500 border-0 shadow-lg bg-white relative overflow-hidden">
+                  {/* Current Role Indicator */}
+                  <div className="absolute top-4 right-4">
+                    <div className="flex items-center gap-1 bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium">
+                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                      Current Role
+                    </div>
+                  </div>
+                  
+                  <CardHeader className="pb-4">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle className="text-xl text-gray-800 group-hover:text-[#073737] transition-colors duration-300">
+                          IT/Software Engineering Intern
+                        </CardTitle>
+                        <CardDescription className="text-[#073737] font-semibold text-base">
+                          Cadtech Services
+                        </CardDescription>
+                      </div>
+                      <div className="w-3 h-3 bg-green-500 rounded-full mt-2"></div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-700">
+                          Lead digital transformation initiatives by <strong>migrating companies from paper-based systems to modern software solutions</strong>, improving operational efficiency
+                        </span>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-700">
+                          Develop and implement <strong>custom software systems</strong> tailored to client needs, replacing manual processes with automated digital workflows
+                        </span>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-700">
+                          Collaborate with cross-functional teams to <strong>analyze business requirements</strong> and design scalable software architecture for diverse industries
+                        </span>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-700">
+                          Provide technical support and training to ensure <strong>smooth transition and adoption</strong> of new digital systems across organizations
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100">
+                      <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">Digital Transformation</Badge>
+                      <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">Custom Software</Badge>
+                      <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">System Migration</Badge>
+                      <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200">Business Analysis</Badge>
+                      <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">Client Training</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+
+          {/* Zetech University - Previous Role */}
+          <div className="relative group">
+            <div className="flex flex-col md:flex-row md:items-center md:gap-12">
+              {/* Left Side - Content */}
+              <div className="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1">
+                <Card className="group-hover:shadow-2xl group-hover:border-[#ff850b]/30 transition-all duration-500 border-0 shadow-lg bg-white">
+                  <CardHeader className="pb-4">
+                    <div className="flex justify-between items-start">
+                      <div className="w-3 h-3 bg-[#ff850b] rounded-full mt-2"></div>
+                      <div>
+                        <CardTitle className="text-xl text-gray-800 group-hover:text-[#073737] transition-colors duration-300">
+                          Software Engineer Attachée
+                        </CardTitle>
+                        <CardDescription className="text-[#073737] font-semibold text-base">
+                          Zetech University
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div className="flex items-start">
+                        <div className="w-2 h-2 bg-[#ff850b] rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-700">
+                          Developed an <strong>AI career guidance chatbot</strong> that helps students make informed career choices and assess university program options
+                        </span>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="w-2 h-2 bg-[#ff850b] rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-700">
+                          Engineered cost-saving solutions by implementing <strong>locally running LLMs</strong>, reducing API costs by 50% while maintaining response quality
+                        </span>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="w-2 h-2 bg-[#ff850b] rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-700">
+                          Collaborated with academic staff to integrate AI tools into the student support ecosystem and improve educational technology infrastructure
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100">
+                      <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">AI/ML</Badge>
+                      <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">LLM</Badge>
+                      <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">Python</Badge>
+                      <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200">Chatbot</Badge>
+                      <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">Cost Optimization</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Right Side - Date & Icon */}
+              <div className="md:w-1/2 md:pl-12 order-1 md:order-2 mb-4 md:mb-0">
+                <div className="flex items-center">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-[#073737] to-[#0A3638] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-white font-bold text-sm">ZU</span>
+                    </div>
+                    <div className="ml-4">
+                      <Badge className="bg-[#073737] text-white px-3 py-1 text-sm">May - Aug 2025</Badge>
+                      <p className="text-sm text-gray-500 mt-1">4 months</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Hackathon Experience */}
+          <div className="relative group">
+            <div className="flex flex-col md:flex-row md:items-center md:gap-12">
+              {/* Left Side - Date & Icon */}
+              <div className="md:w-1/2 md:text-right md:pr-12 mb-4 md:mb-0">
+                <div className="flex md:justify-end items-center">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-[#ff850b] to-orange-500 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-white font-bold text-sm">DS</span>
+                    </div>
+                    <div className="ml-4">
+                      <Badge className="bg-[#ff850b] text-white px-3 py-1 text-sm">March 2025</Badge>
+                      <p className="text-sm text-gray-500 mt-1">Hackathon</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side - Content */}
+              <div className="md:w-1/2 md:pl-12">
+                <Card className="group-hover:shadow-2xl group-hover:border-[#ff850b]/30 transition-all duration-500 border-0 shadow-lg bg-white">
+                  <CardHeader className="pb-4">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle className="text-xl text-gray-800 group-hover:text-[#073737] transition-colors duration-300">
+                          Hackathon Participant
+                        </CardTitle>
+                        <CardDescription className="text-[#073737] font-semibold text-base">
+                          Davis & Shirtliff, Nairobi
+                        </CardDescription>
+                      </div>
+                      <div className="w-3 h-3 bg-[#ff850b] rounded-full mt-2"></div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div className="flex items-start">
+                        <div className="w-2 h-2 bg-[#ff850b] rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-700">
+                          Collaborated in a <strong>cross-functional team</strong> to build a geolocation-based service app with real-time technician tracking capabilities
+                        </span>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="w-2 h-2 bg-[#ff850b] rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-700">
+                          Integrated <strong>Google Maps API</strong> to optimize service provider discovery, reducing user search time by 40% through intelligent location-based matching
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100">
+                      <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">React</Badge>
+                      <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">Node.js</Badge>
+                      <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">Google Maps API</Badge>
+                      <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">Team Collaboration</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Career Progress Summary */}
+      <div className="mt-16 text-center">
+        <div className="bg-gradient-to-r from-[#073737] to-[#0A3638] rounded-2xl p-8 text-white">
+          <h3 className="text-2xl font-bold mb-6">Career Progression</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-[#ff850b]">Digital Transformation</div>
+              <div className="text-gray-300 mt-2">Migrating businesses from paper to digital systems</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-[#ff850b]">AI Innovation</div>
+              <div className="text-gray-300 mt-2">Building intelligent solutions with modern AI</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-[#ff850b]">Full-Stack Development</div>
+              <div className="text-gray-300 mt-2">End-to-end software solutions for diverse needs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       <ProjectsSectiion sheetUrl="https://docs.google.com/spreadsheets/d/e/2PACX-1vQAwzpnX5iDPFX_MOdHBfW-SbYldk2LBEHg7zTxi5NNFeerkAyS16bvAwsr_76QpnfeeGL5XWgfDHQX/pub?output=csv" />
 
-      {/* Skills Section (full page) */}
-      <section id="skills" className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-[#073737] text-center">SKILLS</h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-[#073737]">Technical Skills</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="font-semibold mb-2">Data Engineering</h3>
-                      <div className="flex flex-wrap gap-2">
-                        <Badge variant="outline">GCP</Badge>
-                        <Badge variant="outline">Snowflake</Badge>
-                        <Badge variant="outline">PostgreSQL</Badge>
-                        <Badge variant="outline">Kafka (Basics)</Badge>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">Frontend</h3>
-                      <div className="flex flex-wrap gap-2">
-                        <Badge variant="outline">JavaScript</Badge>
-                        <Badge variant="outline">TypeScript</Badge>
-                        <Badge variant="outline">React.js</Badge>
-                        <Badge variant="outline">Next.js</Badge>
-                        <Badge variant="outline">HTML</Badge>
-                        <Badge variant="outline">CSS</Badge>
-                        <Badge variant="outline">Tailwind CSS</Badge>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">Backend</h3>
-                      <div className="flex flex-wrap gap-2">
-                        <Badge variant="outline">Node.js</Badge>
-                        <Badge variant="outline">Python</Badge>
-                        <Badge variant="outline">RESTful APIs</Badge>
-                        <Badge variant="outline">Java</Badge>
-                        <Badge variant="outline">C#</Badge>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">Databases</h3>
-                      <div className="flex flex-wrap gap-2">
-                        <Badge variant="outline">SQL</Badge>
-                        <Badge variant="outline">Firebase</Badge>
-                        <Badge variant="outline">Supabase</Badge>
-                        <Badge variant="outline">MongoDB</Badge>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">Tools</h3>
-                      <div className="flex flex-wrap gap-2">
-                        <Badge variant="outline">Git</Badge>
-                        <Badge variant="outline">Docker</Badge>
-                        <Badge variant="outline">Apache Kafka</Badge>
-                        <Badge variant="outline">CI/CD Pipelines</Badge>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
 
-              <div className="space-y-8">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-[#073737]">Soft Skills</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge variant="outline">Agile Methodology</Badge>
-                      <Badge variant="outline">Technical Documentation</Badge>
-                      <Badge variant="outline">Cross-functional Collaboration</Badge>
-                      <Badge variant="outline">Problem Solving</Badge>
-                      <Badge variant="outline">Team Leadership</Badge>
-                      <Badge variant="outline">Mentorship</Badge>
-                    </div>
-                  </CardContent>
-                </Card>
+      {/* Contact */}
+<section id="contact" className="py-16 md:py-24 bg-gradient-to-br from-[#073737] via-[#0A3638] to-[#052525] text-white">
+  <div className="container mx-auto px-4">
+    {/* Header */}
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center justify-center mb-4">
+        <div className="w-3 h-3 bg-[#ff850b] rounded-full mr-3"></div>
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          Let's Connect
+        </h2>
+        <div className="w-3 h-3 bg-[#ff850b] rounded-full ml-3"></div>
+      </div>
+      <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+        Ready to bring your ideas to life? Let's create something amazing together.
+      </p>
+    </div>
 
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-[#073737]">Certifications</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div>
-                      <h3 className="font-semibold">Data Engineering Zoomcamp Certification</h3>
-                      <p className="text-sm text-gray-500">DataTalksClub, 2024</p>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold">AWS Cloud Practitioner</h3>
-                      <p className="text-sm text-gray-500">In Progress</p>
-                    </div>
-                  </CardContent>
-                </Card>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      {/* Contact Form */}
+      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-white/30 transition-all duration-500">
+        <h3 className="text-2xl font-bold mb-6 text-white">Send Me a Message</h3>
+        
+        <form className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label htmlFor="name" className="text-sm font-medium text-gray-300">
+                Your Name *
+              </label>
+              <input 
+                id="name" 
+                className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#ff850b] focus:border-transparent transition-all duration-300"
+                placeholder="John Doe"
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium text-gray-300">
+                Email Address *
+              </label>
+              <input 
+                id="email" 
+                type="email" 
+                className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#ff850b] focus:border-transparent transition-all duration-300"
+                placeholder="john@example.com"
+              />
+            </div>
+          </div>
+          
+          <div className="space-y-2">
+            <label htmlFor="subject" className="text-sm font-medium text-gray-300">
+              Subject
+            </label>
+            <input 
+              id="subject" 
+              className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#ff850b] focus:border-transparent transition-all duration-300"
+              placeholder="Project Collaboration"
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <label htmlFor="message" className="text-sm font-medium text-gray-300">
+              Your Message *
+            </label>
+            <textarea 
+              id="message" 
+              rows={6} 
+              className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#ff850b] focus:border-transparent transition-all duration-300 resize-none"
+              placeholder="Tell me about your project or just say hello..."
+            ></textarea>
+          </div>
+          
+          <Button className="w-full bg-gradient-to-r from-[#ff850b] to-orange-500 hover:from-orange-500 hover:to-[#ff850b] text-white py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            Send Message
+            <Mail className="ml-2 h-5 w-5" />
+          </Button>
+        </form>
+      </div>
+
+      {/* Contact Information & Social Links */}
+      <div className="space-y-8">
+        {/* Quick Contact */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+          <h3 className="text-2xl font-bold mb-6 text-white">Get in Touch Directly</h3>
+          
+          <div className="space-y-6">
+            <div className="flex items-center group p-4 rounded-xl hover:bg-white/5 transition-all duration-300 cursor-pointer">
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                <Mail className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <p className="text-gray-300 text-sm">Email</p>
+                <a href="mailto:abellronoh@gmail.com" className="text-white font-semibold hover:text-[#ff850b] transition-colors duration-300">
+                  abellronoh@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-center group p-4 rounded-xl hover:bg-white/5 transition-all duration-300 cursor-pointer">
+              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                <Phone className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <p className="text-gray-300 text-sm">Phone</p>
+                <a href="tel:+254794140776" className="text-white font-semibold hover:text-[#ff850b] transition-colors duration-300">
+                  +254-794-140-776
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-center group p-4 rounded-xl hover:bg-white/5 transition-all duration-300 cursor-pointer">
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                <Linkedin className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <p className="text-gray-300 text-sm">LinkedIn</p>
+                <a href="http://www.linkedin.com/in/abel-ronoh-ab718a265y" className="text-white font-semibold hover:text-[#ff850b] transition-colors duration-300" target="_blank" rel="noopener noreferrer">
+                  Connect with me
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-center group p-4 rounded-xl hover:bg-white/5 transition-all duration-300 cursor-pointer">
+              <div className="w-12 h-12 bg-gradient-to-r from-gray-700 to-gray-800 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                <Github className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <p className="text-gray-300 text-sm">GitHub</p>
+                <a href="https://github.com/Abel-Ronoh" className="text-white font-semibold hover:text-[#ff850b] transition-colors duration-300" target="_blank" rel="noopener noreferrer">
+                  View my projects
+                </a>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-16 md:py-24 bg-[#073737] text-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">GET IN TOUCH</h2>
-          <div className="max-w-md mx-auto">
-            <Card className="bg-white text-gray-800">
-              <CardHeader>
-                <CardTitle className="text-[#073737]">Contact Me</CardTitle>
-                <CardDescription>Feel free to reach out for opportunities or collaborations</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form className="space-y-4">
-                  <div className="grid grid-cols-1 gap-4">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium">
-                        Name
-                      </label>
-                      <input id="name" className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#073737]" placeholder="Your Name" />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium">Email</label>
-                      <input id="email" type="email" className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#073737]" placeholder="your.email@example.com" />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium">Message</label>
-                      <textarea id="message" rows={4} className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#073737]" placeholder="Your message here..."></textarea>
-                    </div>
-                    <Button className="w-full bg-[#073737] hover:bg-[#052525]">Send Message</Button>
-                  </div>
-                </form>
-              </CardContent>
-            </Card>
+        {/* Availability Status */}
+        <div className="bg-gradient-to-r from-[#ff850b] to-orange-500 rounded-2xl p-6 text-white">
+          <div className="flex items-center justify-between mb-4">
+            <h4 className="font-bold text-lg">Current Availability</h4>
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+              <span className="text-sm font-medium">Available for work</span>
+            </div>
           </div>
-          <div className="mt-12 text-center">
-            <div className="flex justify-center space-x-6">
-              <a href="mailto:abellronoh@gmail.com" className="hover:text-gray-300">
-                <Mail className="h-6 w-6" />
-              </a>
-              <a href="tel:+254794140776" className="hover:text-gray-300">
-                <Phone className="h-6 w-6" />
-              </a>
-              <a href="http://www.linkedin.com/in/abel-ronoh-ab718a265y" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
-                <Linkedin className="h-6 w-6" />
-              </a>
-              <a href="https://github.com/Abel-Ronoh" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
-                <Github className="h-6 w-6" />
-              </a>
+          <p className="text-white/90 text-sm">
+            I'm currently accepting new projects and opportunities. Let's discuss how we can work together!
+          </p>
+        </div>
+
+        {/* Response Time */}
+        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+          <h4 className="font-bold text-white mb-3">Quick Response</h4>
+          <div className="space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="text-gray-300 text-sm">Email Response</span>
+              <span className="text-[#ff850b] font-semibold">Within 24 hours</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-gray-300 text-sm">Project Discussion</span>
+              <span className="text-[#ff850b] font-semibold">1-2 days</span>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+
+    {/* Call to Action */}
+    <div className="text-center mt-16">
+      <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-4xl mx-auto">
+        <h3 className="text-2xl font-bold mb-4 text-white">Let's Build Something Extraordinary</h3>
+        <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+          Whether you have a project in mind, need technical consultation, or just want to chat about technology, 
+          I'd love to hear from you.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          <Button className="bg-gradient-to-r from-[#ff850b] to-orange-500 hover:from-orange-500 hover:to-[#ff850b] text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105">
+            Schedule a Call
+          </Button>
+          <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-3 rounded-xl font-semibold transition-all duration-300">
+            View My Resume
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Footer */}
       <footer className="py-6 bg-[#073737] text-white text-center">
