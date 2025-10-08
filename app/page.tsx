@@ -246,6 +246,11 @@ export default function Home() {
   </div>
 </section>
 
+
+      <ProjectsSectiion sheetUrl="https://docs.google.com/spreadsheets/d/e/2PACX-1vQAwzpnX5iDPFX_MOdHBfW-SbYldk2LBEHg7zTxi5NNFeerkAyS16bvAwsr_76QpnfeeGL5XWgfDHQX/pub?output=csv" />
+
+
+
      {/* ABOUT / PROFILE SUMMARY */}
 <section id="about" className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white">
   <div className="container mx-auto px-4">
@@ -951,7 +956,6 @@ export default function Home() {
   </div>
 </section>
 
-      <ProjectsSectiion sheetUrl="https://docs.google.com/spreadsheets/d/e/2PACX-1vQAwzpnX5iDPFX_MOdHBfW-SbYldk2LBEHg7zTxi5NNFeerkAyS16bvAwsr_76QpnfeeGL5XWgfDHQX/pub?output=csv" />
 
 
       {/* Contact */}
