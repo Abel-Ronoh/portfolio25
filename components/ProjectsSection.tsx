@@ -1,12 +1,13 @@
 // components/ProjectsSection.tsx
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useMemo, useCallback } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github, ArrowRight, Filter, Calendar, User, Target, X, ChevronLeft, ChevronRight } from "lucide-react"
+import { ExternalLink, Github, ArrowRight, Filter, Calendar, User, Target, X, ChevronLeft, ChevronRight, Loader } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import ProjectModal from "./ProjectModal"
 
 interface Project {
   id: string
@@ -18,6 +19,7 @@ interface Project {
   github_url?: string
   live_url?: string
   image_url?: string
+  thumbnail_url?: string
   featured: boolean
   status: string
   completion_date?: string
@@ -25,14 +27,19 @@ interface Project {
   role?: string
   challenges?: string
   results?: string
+  impact?: string
+  learnings?: string
   long_description?: string
   images?: string[]
   features?: string[]
   problem_statement?: string
   solution?: string
-  impact?: string
-  learnings?: string
+  priority_order?: number
 }
+
+// Performance optimizations
+const VISIBLE_FEATURED = 4
+const VISIBLE_OTHER = 6
 
 export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
   const [projects, setProjects] = useState<Project[]>([])
@@ -41,6 +48,7 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
   const [error, setError] = useState<string | null>(null)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [showAllFeatured, setShowAllFeatured] = useState(false)
 
   // Fetch data from Google Sheets
   useEffect(() => {
@@ -49,6 +57,16 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
         setLoading(true)
         setError(null)
         
+        // Check cache first
+        const cacheKey = `projects-${btoa(sheetUrl)}`
+        const cached = localStorage.getItem(cacheKey)
+        const cacheTime = localStorage.getItem(`${cacheKey}-time`)
+        
+        if (cached && cacheTime && Date.now() - parseInt(cacheTime) < 5 * 60 * 1000) {
+          setProjects(JSON.parse(cached))
+          return
+        }
+        
         const csvUrl = sheetUrl.replace('/edit?usp=sharing', '/export?format=csv')
         const response = await fetch(csvUrl)
         
@@ -56,7 +74,20 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
         
         const csvText = await response.text()
         const projectsData = parseCSV(csvText)
+        
+        // Sort by priority_order or completion_date
+        projectsData.sort((a, b) => {
+          if (a.priority_order && b.priority_order) return a.priority_order - b.priority_order
+          if (a.completion_date && b.completion_date) 
+            return new Date(b.completion_date).getTime() - new Date(a.completion_date).getTime()
+          return 0
+        })
+        
         setProjects(projectsData)
+        
+        // Cache the results
+        localStorage.setItem(cacheKey, JSON.stringify(projectsData))
+        localStorage.setItem(`${cacheKey}-time`, Date.now().toString())
       } catch (err) {
         console.error('Error fetching projects:', err)
         setError('Failed to load projects. Showing demo projects instead.')
@@ -188,6 +219,10 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
           case 'completion_date':
             project.completion_date = value
             break
+            
+          case 'priority_order':
+            project.priority_order = value ? parseInt(value) : 0
+            break
         }
       })
       
@@ -213,7 +248,8 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
         impact: project.impact,
         learnings: project.learnings,
         features: project.features || [],
-        images: project.images || (project.image_url ? [project.image_url] : [])
+        images: project.images || (project.image_url ? [project.image_url] : []),
+        priority_order: project.priority_order || 0
       } as Project
     })
   }
@@ -240,6 +276,22 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
     return result
   }
 
+  // Optimized filtering with useMemo
+  const { filteredProjects, featuredProjects, otherProjects } = useMemo(() => {
+    const filtered = filter === "all" 
+      ? projects 
+      : projects.filter(project => project.category === filter)
+    
+    const featured = filtered.filter(p => p.featured)
+    const others = filtered.filter(p => !p.featured)
+    
+    return {
+      filteredProjects: filtered,
+      featuredProjects: featured,
+      otherProjects: others
+    }
+  }, [projects, filter])
+
   const categories = [
     { id: "all", label: "All Projects", count: projects.length },
     { id: "ai-ml", label: "AI/ML", count: projects.filter(p => p.category === "ai-ml").length },
@@ -248,8 +300,6 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
     { id: "mobile", label: "Mobile", count: projects.filter(p => p.category === "mobile").length },
     { id: "iot", label: "IoT", count: projects.filter(p => p.category === "iot").length }
   ]
-
-  const filteredProjects = filter === "all" ? projects : projects.filter(project => project.category === filter)
 
   const getCategoryColor = (category: string) => {
     const colors = {
@@ -279,48 +329,112 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
     })
   }
 
-  const openProjectModal = (project: Project) => {
+  const openProjectModal = useCallback((project: Project) => {
     setSelectedProject(project)
     setCurrentImageIndex(0)
-    document.body.style.overflow = 'hidden' // Prevent background scrolling
-  }
+    document.body.style.overflow = 'hidden'
+  }, [])
 
-  const closeProjectModal = () => {
+  const closeProjectModal = useCallback(() => {
     setSelectedProject(null)
     document.body.style.overflow = 'auto'
-  }
+  }, [])
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     if (selectedProject?.images) {
-      setCurrentImageIndex((prev) => 
+      setCurrentImageIndex(prev => 
         prev === selectedProject.images!.length - 1 ? 0 : prev + 1
       )
     }
-  }
+  }, [selectedProject])
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     if (selectedProject?.images) {
-      setCurrentImageIndex((prev) => 
+      setCurrentImageIndex(prev => 
         prev === 0 ? selectedProject.images!.length - 1 : prev - 1
       )
     }
-  }
+  }, [selectedProject])
 
-  // Close modal on escape key
+  // Keyboard navigation
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeProjectModal()
     }
+    
+    const handleArrowKeys = (e: KeyboardEvent) => {
+      if (selectedProject) {
+        if (e.key === 'ArrowLeft') prevImage()
+        if (e.key === 'ArrowRight') nextImage()
+      }
+    }
+
     document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
-  }, [])
+    document.addEventListener('keydown', handleArrowKeys)
+    
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.removeEventListener('keydown', handleArrowKeys)
+    }
+  }, [selectedProject, closeProjectModal, prevImage, nextImage])
+
+  // Loading skeleton component
+  const ProjectSkeleton = () => (
+    <Card className="border-0 shadow-lg bg-white animate-pulse">
+      <CardHeader className="pb-4">
+        <div className="flex justify-between items-start mb-3">
+          <div className="flex gap-2">
+            <div className="h-6 w-20 bg-gray-200 rounded-full"></div>
+            <div className="h-6 w-16 bg-gray-200 rounded-full"></div>
+          </div>
+          <div className="flex gap-2">
+            <div className="h-8 w-8 bg-gray-200 rounded-lg"></div>
+            <div className="h-8 w-8 bg-gray-200 rounded-lg"></div>
+          </div>
+        </div>
+        <div className="h-8 bg-gray-200 rounded mb-3"></div>
+        <div className="flex gap-4">
+          <div className="h-4 w-24 bg-gray-200 rounded"></div>
+          <div className="h-4 w-20 bg-gray-200 rounded"></div>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <div className="h-16 bg-gray-200 rounded mb-4"></div>
+        <div className="h-12 bg-gray-200 rounded mb-4"></div>
+        <div className="flex gap-2 mb-6">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="h-6 w-16 bg-gray-200 rounded-full"></div>
+          ))}
+        </div>
+        <div className="flex justify-between">
+          <div className="h-10 w-32 bg-gray-200 rounded"></div>
+          <div className="flex gap-3">
+            <div className="h-6 w-16 bg-gray-200 rounded"></div>
+            <div className="h-6 w-20 bg-gray-200 rounded"></div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  )
 
   if (loading) {
     return (
-      <section id="projects" className="py-16 md:py-24 bg-white">
+      <section id="projects" className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-blue-50/30">
         <div className="container mx-auto px-4">
-          <div className="text-center">
-            <div className="animate-pulse text-gray-600">Loading projects...</div>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center mb-4">
+              <div className="w-3 h-3 bg-[#ff850b] rounded-full mr-3"></div>
+              <h2 className="text-4xl font-bold bg-gradient-to-r from-[#073737] to-[#0A3638] bg-clip-text text-transparent">
+                Featured Projects
+              </h2>
+              <div className="w-3 h-3 bg-[#ff850b] rounded-full ml-3"></div>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {[...Array(4)].map((_, i) => (
+              <ProjectSkeleton key={i} />
+            ))}
           </div>
         </div>
       </section>
@@ -376,7 +490,9 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
 
           {/* Featured Projects Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-            {filteredProjects.filter(p => p.featured).map((project) => (
+            {featuredProjects
+              .slice(0, showAllFeatured ? featuredProjects.length : VISIBLE_FEATURED)
+              .map((project) => (
               <Card 
                 key={project.id} 
                 className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white cursor-pointer transform hover:scale-[1.02]"
@@ -497,12 +613,26 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
             ))}
           </div>
 
-          {/* All Projects Grid */}
-          {filteredProjects.filter(p => !p.featured).length > 0 && (
+          {/* Show More/Less Button for Featured */}
+          {featuredProjects.length > VISIBLE_FEATURED && (
+            <div className="text-center mb-12">
+              <Button
+                onClick={() => setShowAllFeatured(!showAllFeatured)}
+                variant="outline"
+                className="border-[#073737] text-[#073737] hover:bg-[#073737] hover:text-white"
+              >
+                {showAllFeatured ? 'Show Less' : `Show All Featured Projects (${featuredProjects.length})`}
+                <ArrowRight className={`ml-2 h-4 w-4 transition-transform ${showAllFeatured ? 'rotate-90' : ''}`} />
+              </Button>
+            </div>
+          )}
+
+          {/* Other Projects */}
+          {otherProjects.length > 0 && (
             <div className="mb-12">
               <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">More Projects</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProjects.filter(p => !p.featured).map((project) => (
+                {otherProjects.map((project) => (
                   <Card 
                     key={project.id} 
                     className="group hover:shadow-xl transition-all duration-300 border border-gray-100 bg-white cursor-pointer transform hover:scale-105"
@@ -576,15 +706,21 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
           {/* CTA Section */}
           <div className="text-center">
             <div className="bg-gradient-to-r from-[#073737] to-[#0A3638] rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-4">Interested in Collaborating?</h3>
+              <h3 className="text-2xl font-bold mb-4">Want to See More?</h3>
               <p className="text-white/80 mb-6 max-w-2xl mx-auto">
-                I'm always open to discussing new opportunities and interesting projects. 
-                Let's create something amazing together!
+                Explore detailed case studies, code implementations, and project outcomes. 
+                Let's discuss how we can build something amazing together!
               </p>
-              <Button className="bg-[#ff850b] hover:bg-[#e67600] text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
-                Start a Conversation
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Button className="bg-[#ff850b] hover:bg-[#e67600] text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
+                  View Full Portfolio
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </Button>
+                <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-[#073737]">
+                  Start a Conversation
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -592,216 +728,18 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
 
       {/* Project Detail Modal */}
       {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-          <div 
-            className="relative bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              onClick={closeProjectModal}
-              className="absolute top-4 right-4 z-10 p-2 bg-white/90 rounded-full hover:bg-white transition-colors shadow-lg"
-            >
-              <X className="h-5 w-5 text-gray-700" />
-            </button>
-
-            {/* Image Gallery */}
-            {selectedProject.images && selectedProject.images.length > 0 && (
-              <div className="relative h-80 md:h-96 bg-gray-100 rounded-t-2xl overflow-hidden">
-                <Image
-                  src={selectedProject.images[currentImageIndex] || "/api/placeholder/800/450"}
-                  alt={selectedProject.title}
-                  fill
-                  className="object-cover"
-                />
-                
-                {/* Image Navigation */}
-                {selectedProject.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={prevImage}
-                      className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
-                    >
-                      <ChevronLeft className="h-5 w-5 text-gray-700" />
-                    </button>
-                    <button
-                      onClick={nextImage}
-                      className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
-                    >
-                      <ChevronRight className="h-5 w-5 text-gray-700" />
-                    </button>
-                    
-                    {/* Image Indicators */}
-                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-                      {selectedProject.images.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setCurrentImageIndex(index)}
-                          className={`w-2 h-2 rounded-full transition-all ${
-                            index === currentImageIndex ? 'bg-white scale-125' : 'bg-white/50'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </>
-                )}
-              </div>
-            )}
-
-            {/* Project Content */}
-            <div className="p-6 md:p-8">
-              {/* Header */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                <Badge className={`${getCategoryColor(selectedProject.category)} border`}>
-                  {categories.find(c => c.id === selectedProject.category)?.label}
-                </Badge>
-                <Badge className={`${getStatusColor(selectedProject.status)} border`}>
-                  {selectedProject.status}
-                </Badge>
-              </div>
-
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                {selectedProject.title}
-              </h2>
-
-              {/* Project Meta */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
-                {selectedProject.completion_date && (
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-gray-600" />
-                    <span className="text-sm text-gray-700">
-                      Completed: {formatDate(selectedProject.completion_date)}
-                    </span>
-                  </div>
-                )}
-                {selectedProject.client && (
-                  <div className="flex items-center gap-2">
-                    <User className="h-4 w-4 text-gray-600" />
-                    <span className="text-sm text-gray-700">{selectedProject.client}</span>
-                  </div>
-                )}
-                {selectedProject.role && (
-                  <div className="flex items-center gap-2">
-                    <Target className="h-4 w-4 text-gray-600" />
-                    <span className="text-sm text-gray-700">{selectedProject.role}</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Long Description */}
-              <div className="prose prose-gray max-w-none mb-8">
-                <p className="text-gray-700 leading-relaxed">
-                  {selectedProject.long_description}
-                </p>
-              </div>
-
-              {/* Problem & Solution */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                {selectedProject.challenges && (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-red-800 mb-2 flex items-center gap-2">
-                      <Target className="h-4 w-4" />
-                      Challenges
-                    </h4>
-                    <p className="text-red-700 text-sm">{selectedProject.challenges}</p>
-                  </div>
-                )}
-                {selectedProject.solution && (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-blue-800 mb-2 flex items-center gap-2">
-                      <Target className="h-4 w-4" />
-                      Solution
-                    </h4>
-                    <p className="text-blue-700 text-sm">{selectedProject.solution}</p>
-                  </div>
-                )}
-              </div>
-
-              {/* Results & Impact */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                {selectedProject.results && (
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-green-800 mb-2 flex items-center gap-2">
-                      <Target className="h-4 w-4" />
-                      Key Results
-                    </h4>
-                    <p className="text-green-700 text-sm">{selectedProject.results}</p>
-                  </div>
-                )}
-                {selectedProject.impact && (
-                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-purple-800 mb-2 flex items-center gap-2">
-                      <Target className="h-4 w-4" />
-                      Impact
-                    </h4>
-                    <p className="text-purple-700 text-sm">{selectedProject.impact}</p>
-                  </div>
-                )}
-              </div>
-
-              {/* Features */}
-              {selectedProject.features && selectedProject.features.length > 0 && (
-                <div className="mb-8">
-                  <h4 className="font-semibold text-gray-800 mb-3">Key Features</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {selectedProject.features.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-[#ff850b] rounded-full"></div>
-                        <span className="text-gray-700 text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Technologies */}
-              <div className="mb-8">
-                <h4 className="font-semibold text-gray-800 mb-3">Technologies Used</h4>
-                <div className="flex flex-wrap gap-2">
-                  {selectedProject.technologies.map((tech) => (
-                    <span key={tech} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm border border-gray-200">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Learnings */}
-              {selectedProject.learnings && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-8">
-                  <h4 className="font-semibold text-yellow-800 mb-2 flex items-center gap-2">
-                    <Target className="h-4 w-4" />
-                    Key Learnings
-                  </h4>
-                  <p className="text-yellow-700 text-sm">{selectedProject.learnings}</p>
-                </div>
-              )}
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap gap-4 pt-6 border-t border-gray-200">
-                {selectedProject.github_url && (
-                  <a href={selectedProject.github_url} target="_blank" rel="noopener noreferrer">
-                    <Button className="bg-gray-800 hover:bg-gray-900 text-white">
-                      <Github className="h-4 w-4 mr-2" />
-                      View Code
-                    </Button>
-                  </a>
-                )}
-                {selectedProject.live_url && selectedProject.live_url !== '#' && (
-                  <a href={selectedProject.live_url} target="_blank" rel="noopener noreferrer">
-                    <Button className="bg-[#ff850b] hover:bg-[#e67600] text-white">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
-                    </Button>
-                  </a>
-                )}
-                <Button variant="outline" onClick={closeProjectModal}>
-                  Close
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ProjectModal
+          project={selectedProject}
+          currentImageIndex={currentImageIndex}
+          onClose={closeProjectModal}
+          onNextImage={nextImage}
+          onPrevImage={prevImage}
+          onSetImageIndex={setCurrentImageIndex}
+          getCategoryColor={getCategoryColor}
+          getStatusColor={getStatusColor}
+          formatDate={formatDate}
+          categories={categories}
+        />
       )}
     </>
   )
