@@ -51,25 +51,17 @@ export default function HeroSection({ active }: HeroSectionProps) {
           {/* Text Content */}
           <div className={`flex-1 text-center lg:text-left space-y-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             
-            {/* Enhanced Badge with animation */}
-            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-[#ff850b]/30 bg-[#ff850b]/10 backdrop-blur-sm hover:scale-105 transition-transform duration-300 group">
-              <div className="relative">
-                <div className="w-2 h-2 bg-[#ff850b] rounded-full animate-ping absolute"></div>
-                <div className="w-2 h-2 bg-[#ff850b] rounded-full relative"></div>
-              </div>
-              <span className="text-sm text-gray-300 font-medium">Open to new opportunities</span>
-              <Sparkles className="w-4 h-4 text-[#ff850b] animate-pulse" />
-            </div>
+            
 
             {/* Enhanced Headline with subtle animation */}
             <div className="space-y-6">
               <div className="overflow-hidden">
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight">
-                  <span className="text-white block bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                    Abel
+                <h1 className="text-6xl md:text-6xl lg:text-7xl font-light tracking-tight">
+                  <span className="text-5xl text-white block bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    I am 
                   </span>
                   <span className="text-[#ff850b] block mt-2 bg-gradient-to-r from-[#ff850b] to-orange-400 bg-clip-text text-transparent animate-gradient">
-                    Ronoh
+                    Abel Ronoh
                   </span>
                 </h1>
               </div>
@@ -164,7 +156,7 @@ export default function HeroSection({ active }: HeroSectionProps) {
         {/* Enhanced Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
           <div className="flex flex-col items-center gap-3">
-            <span className="text-sm text-gray-400 font-medium tracking-wide">Explore More</span>
+            <span className="text-sm text-gray-400 font-medium tracking-wide">There&apos;s more</span>
             <Button 
               variant="ghost" 
               size="icon" 
