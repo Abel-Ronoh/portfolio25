@@ -74,7 +74,7 @@ export default function Home() {
       />
       <SkillsSection />
       <ExperienceSection />
-      <ProjectsSection sheetUrl="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1dWoKIepAWYUOSFyLSK-UxpS1aXlj5lrpmYw4bJau_rysSOIQtFuYCRkPk_TUyVE_lOqWv01byQGw/pub?gid=622894071&single=true&output=csv" />
+      <ProjectsSection sheetUrl="https://docs.google.com/spreadsheets/d/e/2PACX-1vSCD-lTvFPP52zwoJZ-o9m7RXBrVKG5foyOqf603AB1WMlCtKxsLVmS4pNXddldB0wdXgvELhwQNUK_/pub?output=csv" />
       <AboutSection />
       <ContactSection />
       <Footer />
