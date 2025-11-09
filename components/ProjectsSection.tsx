@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Github, ArrowRight, Filter, Calendar, User, Target, X, ChevronLeft, ChevronRight, Loader } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import Link from "next/link";
 import ProjectModal from "./ProjectModal"
 
 interface Project {
@@ -49,6 +50,14 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [showAllFeatured, setShowAllFeatured] = useState(false)
+
+
+   const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   // Fetch data from Google Sheets
   useEffect(() => {
@@ -712,11 +721,13 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
                 Let's discuss how we can build something amazing together!
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button className="bg-[#ff850b] hover:bg-[#e67600] text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
-                  View Full Portfolio
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </Button>
-                <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-[#073737]">
+                <Link href="https://github.com/Abel-Ronoh?tab=repositories" target="_blank" rel="noopener noreferrer">
+  <Button className="bg-[#ff850b] hover:bg-[#e67600] text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
+    View Full Portfolio
+    <ExternalLink className="ml-2 h-4 w-4" />
+  </Button>
+</Link>
+                <Button onClick={() => scrollToSection('contact')} variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-[#073737]">
                   Start a Conversation
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
