@@ -72,10 +72,10 @@ export default function Home() {
         scrollToSlide={scrollToSlide}
         slideIndex={slideIndex}
       />
+      <SkillsSection />
       <ExperienceSection />
       <ProjectsSection sheetUrl="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1dWoKIepAWYUOSFyLSK-UxpS1aXlj5lrpmYw4bJau_rysSOIQtFuYCRkPk_TUyVE_lOqWv01byQGw/pub?gid=622894071&single=true&output=csv" />
       <AboutSection />
-      <SkillsSection />
       <ContactSection />
       <Footer />
     </div>

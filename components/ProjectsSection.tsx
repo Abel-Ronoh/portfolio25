@@ -723,7 +723,7 @@ export default function ProjectsSection({ sheetUrl }: { sheetUrl: string }) {
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link href="https://github.com/Abel-Ronoh?tab=repositories" target="_blank" rel="noopener noreferrer">
   <Button className="bg-[#ff850b] hover:bg-[#e67600] text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
-    View Full Portfolio
+    View all projects
     <ExternalLink className="ml-2 h-4 w-4" />
   </Button>
 </Link>

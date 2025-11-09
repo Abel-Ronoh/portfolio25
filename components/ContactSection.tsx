@@ -276,24 +276,7 @@ export default function ContactSection() {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4 text-white">Let&apos;s Build Something Extraordinary</h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Whether you have a project in mind, need technical consultation, or just want to chat about technology, 
-              I&apos;d love to hear from you.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button className="bg-gradient-to-r from-[#ff850b] to-orange-500 hover:from-orange-500 hover:to-[#ff850b] text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105">
-                Schedule a Call
-              </Button>
-              <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-3 rounded-xl font-semibold transition-all duration-300">
-                View My Resume
-              </Button>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </section>
   );
